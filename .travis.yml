@@ -12,3 +12,7 @@ matrix:
   allow_failures:
     - php: 7.0
     - php: hhvm
+install:
+  - php -r "readfile('https://getcomposer.org/installer');" | php
+  - chmod +x composer.phar
+  - ./composer.phar install
