@@ -1,4 +1,3 @@
-f2
+Fertilizer
 ==
-
-A Symfony project created on October 24, 2015, 5:36 pm.
+[![Build Status](https://travis-ci.org/JahHub/fertilizer.svg?branch=master)](https://travis-ci.org/JahHub/fertilizer)
