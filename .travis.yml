@@ -14,5 +14,4 @@ matrix:
     - php: hhvm
 install:
   - php -r "readfile('https://getcomposer.org/installer');" | php
-  - chmod +x composer.phar
   - ./composer.phar install
