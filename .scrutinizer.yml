@@ -1,0 +1,20 @@
+tools:
+    php_code_sniffer:
+        config:
+            standard: "Symfony"
+filter:
+    paths:
+        - 'src/*'
+checks:
+    php: true
+build:
+    environment:
+        php:
+            version: 5.4
+    tests:
+        override:
+            -
+                command: phpunit --coverage-clover=my-coverage-file
+                coverage:
+                    file: my-coverage-file
+                    format: php-clover
