@@ -1,5 +1,6 @@
 {
     "name": "other/f2",
+    "description": "",
     "license": "proprietary",
     "type": "project",
     "autoload": {
