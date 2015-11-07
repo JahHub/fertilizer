@@ -1,3 +1,0 @@
-fertilizer_fertilizer_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: JahHubFertilizerBundle:Default:index }
