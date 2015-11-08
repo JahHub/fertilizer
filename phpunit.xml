@@ -21,7 +21,7 @@
         <whitelist>
             <directory>src</directory>
             <exclude>
-                <directory>src/*/*Bundle/DependencyInjection</directory>
+                <file>src/*/*Bundle/DependencyInjection/Configuration.php</file>
                 <directory>src/*/*Bundle/Entity</directory>
                 <directory>src/*/*Bundle/Resources</directory>
                 <directory>src/*/*Bundle/Tests</directory>
