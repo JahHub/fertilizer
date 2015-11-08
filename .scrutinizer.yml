@@ -18,6 +18,10 @@ filter:
 checks:
     php: true
 build:
+    cache:
+        directories:
+            - vendor/
+            - bin/
     environment:
         php:
             version: 5.4
