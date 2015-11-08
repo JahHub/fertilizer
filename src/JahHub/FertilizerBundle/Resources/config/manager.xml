@@ -8,7 +8,7 @@
     </parameters>
     <services>
         <service id="jah_hub_core.manager.item" class="%jah_hub_core.manager.object.class%" >
-            <argument type="service" id="jah_hub_core.repository.item"/>
+            <argument type="service" id="jahhub_fertilizer.repository.item"/>
             <argument id="doctrine" type="service"/>
         </service>
     </services>
