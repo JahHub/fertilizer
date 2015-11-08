@@ -22,9 +22,9 @@
             <directory>src</directory>
             <exclude>
                 <directory>src/*/*Bundle/DependencyInjection</directory>
-                <directory>src/*/*Bundle/Controller</directory>
                 <directory>src/*/*Bundle/Entity</directory>
                 <directory>src/*/*Bundle/Resources</directory>
+                <directory>src/*/*Bundle/Repository</directory>
                 <directory>src/*/*Bundle/Tests</directory>
             </exclude>
         </whitelist>

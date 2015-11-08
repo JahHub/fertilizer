@@ -13,6 +13,8 @@ tools:
         config:
             standard: "Symfony"
 filter:
+    excluded_paths:
+        - 'src/*/*Bundle/Tests'
     paths:
         - 'src/*'
 checks:
