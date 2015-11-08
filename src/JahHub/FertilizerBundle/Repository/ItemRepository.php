@@ -47,22 +47,7 @@ class ItemRepository extends EntityRepository implements EntityRepositoryInterfa
     }
 
     /**
-     * Get a list of object.
-     *
-     * @param int        $limit
-     * @param int        $offset
-     * @param array|null $orderBy
-     *
-     * @return array
-     */
-    /**
-     * Get a list of entity.
-     *
-     * @param int        $limit
-     * @param int        $offset
-     * @param array|null $orderBy
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function all($limit = 5, $offset = 0, $orderBy = null)
     {
