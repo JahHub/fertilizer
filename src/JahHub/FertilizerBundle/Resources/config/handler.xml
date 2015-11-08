@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="jahhub_fertilizer.handler.item.class">JahHub\FertilizerBundle\RestHandler\ItemHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.state.class">JahHub\FertilizerBundle\RestHandler\StateHandler</parameter>
+    </parameters>
+    <services>
+        <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">
+            <argument type="service" id="jah_hub_core.manager.item"/>
+            <argument type="service" id="form.factory"/>
+        </service>
+    </services>
+</container>

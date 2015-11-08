@@ -23,5 +23,6 @@ class JahHubFertilizerExtension extends Extension
         $loader->load('entity_class.xml');
         $loader->load('repository.xml');
         $loader->load('manager.xml');
+        $loader->load('handler.xml');
     }
 }
