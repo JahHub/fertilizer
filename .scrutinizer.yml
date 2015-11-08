@@ -27,8 +27,12 @@ build:
             version: 5.4
     dependencies:
         override:
+            - ./configure.sh
             - composer install --no-interaction
     tests:
+        before:
+            - ./app/console doctrine:database:create -e test
+            - ./app/console doctrine:schema:create -e test
         override:
             -
                 command: ./bin/phpunit --coverage-clover=my-coverage-file

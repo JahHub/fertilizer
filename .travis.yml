@@ -5,8 +5,13 @@ cache:
   directories:
     - vendor
     - bin
-
+services:
+  - mysql
 install:
-  - composer install
-script: ./bin/phpunit
+  - ./configure.sh
+  - composer install --no-interaction
+  - ./app/console doctrine:database:create -e test
+  - ./app/console doctrine:schema:create -e test
+script:
+  - ./bin/phpunit
 
