@@ -14,7 +14,7 @@ tools:
             standard: "Symfony"
 filter:
     excluded_paths:
-        - 'src/*/*Bundle/Tests'
+        - 'src/*/Tests/'
     paths:
         - 'src/*'
 checks:
