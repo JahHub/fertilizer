@@ -24,7 +24,6 @@
                 <directory>src/*/*Bundle/DependencyInjection</directory>
                 <directory>src/*/*Bundle/Entity</directory>
                 <directory>src/*/*Bundle/Resources</directory>
-                <directory>src/*/*Bundle/Repository</directory>
                 <directory>src/*/*Bundle/Tests</directory>
             </exclude>
         </whitelist>
