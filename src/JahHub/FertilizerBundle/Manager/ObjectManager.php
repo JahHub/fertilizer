@@ -1,44 +1,31 @@
 <?php
 namespace JahHub\FertilizerBundle\Manager;
 
-use Doctrine\Orm\EntityManager as DoctrineManager;
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
-use JahHub\FertilizerBundle\Exception\InvalidFormException;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormTypeInterface;
+use JahHub\FertilizerBundle\Repository\EntityRepositoryInterface;
 
 /**
  * Class ObjectManager
  */
 class ObjectManager
 {
-    /** @var ObjectRepository */
+    /** @var EntityRepositoryInterface */
     private $repository;
 
-    /** @var DoctrineManager */
-    private $objectManager;
-
-    /** @var FormFactoryInterface */
-    private $formFactory;
-
-    /** @var string */
-    private $entityClass;
+    /** @var EntityManager */
+    private $entityManager;
 
     /**
-     * @param DoctrineManager      $objectManager
-     * @param string               $entityClass
-     * @param FormFactoryInterface $formFactory
+     * @param EntityRepositoryInterface $entityRepository
+     * @param EntityManager             $entityManager
      */
     public function __construct(
-        DoctrineManager $objectManager,
-        $entityClass,
-        FormFactoryInterface $formFactory
+        EntityRepositoryInterface $entityRepository,
+        EntityManager $entityManager
     ) {
-        $this->entityClass = $entityClass;
-        $this->objectManager = $objectManager;
-        $this->repository = $this->objectManager->getRepository($this->entityClass);
-        $this->formFactory = $formFactory;
+        $this->repository = $entityRepository;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -56,26 +43,21 @@ class ObjectManager
      */
     public function delete($id)
     {
-        $qb = $this->objectManager->createQueryBuilder();
-        $qb->delete($this->entityClass, 'entity')
-            ->where('entity.id = :entity_id')
-            ->setParameter('entity_id', $id);
-
-        $qb->getQuery()->execute();
+        $this->repository->delete($id);
     }
 
     /**
      * Get a list of entity.
      *
-     * @param int         $limit
-     * @param int         $offset
-     * @param string|null $orderBy
+     * @param int        $limit
+     * @param int        $offset
+     * @param array|null $orderBy
      *
      * @return array
      */
     public function all($limit = 5, $offset = 0, $orderBy = null)
     {
-        return $this->repository->findBy(array(), $orderBy, $limit, $offset);
+        return $this->repository->all($limit, $offset, $orderBy);
     }
 
     /**
@@ -85,15 +67,7 @@ class ObjectManager
      */
     public function exist($id)
     {
-        $qb = $this->objectManager->createQueryBuilder();
-        $qb->select('entity.id')
-            ->from($this->entityClass, 'entity')
-            ->where('entity.id = :entity_id')
-            ->setParameter('entity_id', $id);
-
-        $result = $qb->getQuery()->getArrayResult();
-
-        return count($result) > 0;
+        return $this->repository->exist($id);
     }
 
     /**
@@ -101,34 +75,7 @@ class ObjectManager
      */
     public function create()
     {
-        $className = $this->entityClass;
-
-        return new $className();
-    }
-
-    /**
-     * @param string|FormTypeInterface $form       The type of the form
-     * @param EntityInterface          $entity     The initial data
-     * @param array                    $parameters
-     * @param string                   $method
-     *
-     * @return mixed the submitted entity
-     */
-    public function processForm($form, EntityInterface $entity, array $parameters, $method = "PUT")
-    {
-        $form = $this->formFactory->create($form, $entity, array('method' => $method));
-        $form->submit($parameters, 'PATCH' !== $method);
-        if ($form->isValid()) {
-            $submittedEntity = $form->getData();
-            $this->batchPersistAndFlush(array($submittedEntity));
-
-            return $submittedEntity;
-        }
-
-        throw new InvalidFormException(
-            'Invalid submitted data',
-            $form
-        );
+        return $this->repository->create();
     }
 
     /**
@@ -140,15 +87,15 @@ class ObjectManager
         $counter = 0;
         $entitiesToFlush = array();
         foreach ($entities as $entity) {
-            $this->objectManager->persist($entity);
+            $this->entityManager->persist($entity);
             $entitiesToFlush[] = $entity;
             if (0 === ++$counter%$batchLimit) {
-                $this->objectManager->flush($entitiesToFlush);
+                $this->entityManager->flush($entitiesToFlush);
                 $entitiesToFlush = array();
             }
         }
         if (0 !== $counter%$batchLimit) {
-            $this->objectManager->flush($entitiesToFlush);
+            $this->entityManager->flush($entitiesToFlush);
         }
     }
 }
