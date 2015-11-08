@@ -10,7 +10,6 @@ services:
 install:
   - ./configure.sh
   - composer install --no-interaction
-before_test:
   - ./app/console doctrine:database:create -e test
   - ./app/console doctrine:schema:create -e test
 script:
