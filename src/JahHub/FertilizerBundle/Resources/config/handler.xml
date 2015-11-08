@@ -10,7 +10,7 @@
     </parameters>
     <services>
         <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">
-            <argument type="service" id="jah_hub_core.manager.item"/>
+            <argument type="service" id="jahhub_fertilizer.manager.item"/>
             <argument type="service" id="form.factory"/>
         </service>
     </services>
