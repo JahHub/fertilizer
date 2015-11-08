@@ -4,5 +4,5 @@ php:
 
 install:
   - composer install
-script: ./bin/phpunit --configuration phpunit.xml --coverage-text
+script: ./bin/phpunit
 
