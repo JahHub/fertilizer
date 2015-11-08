@@ -17,11 +17,21 @@ abstract class AbstractRepositoryTest extends WebTestCase
      */
     public function setUp()
     {
+        parent::setUp();
         self::bootKernel();
         $this->entityManager = self::$kernel->getContainer()
             ->get('doctrine')
             ->getManager();
         $this->loadFixtures(array());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        $this->entityManager->close();
     }
 
     /**
