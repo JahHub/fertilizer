@@ -28,7 +28,7 @@ framework:
 
 twig:
     debug: "%kernel.debug%"
-    strict_variables: true
+    strict_variables: false
 
 assetic:
     debug: "%kernel.debug%"
