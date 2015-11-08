@@ -1,12 +1,13 @@
 <?php
-namespace JahHub\FertilizerBundle\RestHandler;
+namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
+use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
 
 /**
- * Class StateHandler
+ * Class AbstractHandlerMock
  */
-interface RESTHandlerInterface
+class AbstractHandlerMock extends AbstractHandler
 {
     /**
      * Get an object.
@@ -15,7 +16,10 @@ interface RESTHandlerInterface
      *
      * @return EntityInterface
      */
-    public function get($id);
+    public function get($id)
+    {
+        // TODO: Implement get() method.
+    }
 
     /**
      * Create a new object.
@@ -24,7 +28,10 @@ interface RESTHandlerInterface
      *
      * @return EntityInterface
      */
-    public function post(array $parameters);
+    public function post(array $parameters)
+    {
+        // TODO: Implement post() method.
+    }
 
     /**
      * Edit a object, or create if not exist.
@@ -34,7 +41,10 @@ interface RESTHandlerInterface
      *
      * @return EntityInterface
      */
-    public function put(EntityInterface $object, array $parameters);
+    public function put(EntityInterface $object, array $parameters)
+    {
+        // TODO: Implement put() method.
+    }
 
     /**
      * Partially update an object.
@@ -44,14 +54,20 @@ interface RESTHandlerInterface
      *
      * @return EntityInterface
      */
-    public function patch(EntityInterface $object, array $parameters);
+    public function patch(EntityInterface $object, array $parameters)
+    {
+        // TODO: Implement patch() method.
+    }
 
     /**
      * Delete an object
      *
      * @param int $id
      */
-    public function delete($id);
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 
     /**
      * Get a list of object.
@@ -62,7 +78,10 @@ interface RESTHandlerInterface
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0, $orderBy = null);
+    public function all($limit = 5, $offset = 0, $orderBy = null)
+    {
+        // TODO: Implement all() method.
+    }
 
     /**
      * Check if an object exist
@@ -71,5 +90,10 @@ interface RESTHandlerInterface
      *
      * @return bool
      */
-    public function exist($id);
+    public function exist($id)
+    {
+        // TODO: Implement exist() method.
+    }
+
+
 }

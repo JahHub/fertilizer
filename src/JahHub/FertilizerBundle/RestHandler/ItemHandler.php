@@ -10,39 +10,24 @@ use JahHub\FertilizerBundle\Manager\ObjectManager;
  */
 class ItemHandler extends AbstractHandler
 {
-    /** @var ObjectManager */
-    private $objectManager;
-
     /**
-     * @param ObjectManager $objectManager
-     */
-    public function __construct(ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function exist($id)
     {
-        return $this->objectManager->exist($id);
+        return $this->getFertilizerObjectManager()->exist($id);
     }
 
     /**
-     * Get a list of entity.
-     *
      * @param int        $limit
      * @param int        $offset
      * @param array|null $orderBy
      *
-     * @return array
+     * @return Item[]
      */
     public function all($limit = 5, $offset = 0, $orderBy = null)
     {
-        return $this->objectManager->all($limit, $offset, $orderBy);
+        return $this->getFertilizerObjectManager()->all($limit, $offset, $orderBy);
     }
 
     /**
@@ -52,17 +37,15 @@ class ItemHandler extends AbstractHandler
      */
     public function get($id)
     {
-        return $this->objectManager->load($id);
+        return $this->getFertilizerObjectManager()->load($id);
     }
 
     /**
      * @param int $id
-     *
-     * @return Item
      */
     public function delete($id)
     {
-        return $this->objectManager->delete($id);
+        $this->getFertilizerObjectManager()->delete($id);
     }
 
     /**
@@ -73,7 +56,7 @@ class ItemHandler extends AbstractHandler
     public function post(array $parameters)
     {
         /** @var Item $item */
-        $item = $this->objectManager->create();
+        $item = $this->getFertilizerObjectManager()->create();
 
         return $this->processItemForm($item, $parameters, 'POST');
     }
@@ -105,7 +88,7 @@ class ItemHandler extends AbstractHandler
      * @param array           $parameters
      * @param string          $method
      *
-     * @return mixed
+     * @return Item
      */
     private function processItemForm(EntityInterface $item, array $parameters, $method = "PUT")
     {

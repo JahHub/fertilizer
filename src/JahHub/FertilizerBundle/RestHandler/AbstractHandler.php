@@ -5,7 +5,7 @@ use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use JahHub\FertilizerBundle\Manager\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Class AbstractHandler
@@ -13,30 +13,47 @@ use Symfony\Component\Form\FormTypeInterface;
 abstract class AbstractHandler implements RESTHandlerInterface
 {
     /** @var ObjectManager */
-    private $objectManager;
+    private $fertilizerObjectManager;
 
     /** @var FormFactoryInterface */
     private $formFactory;
 
     /**
-     * @param ObjectManager        $objectManager
+     * @param ObjectManager        $fertilizerObjectManager
      * @param FormFactoryInterface $formFactory
      */
     public function __construct(
-        ObjectManager $objectManager,
+        ObjectManager $fertilizerObjectManager,
         FormFactoryInterface $formFactory
     ) {
-        $this->objectManager = $objectManager;
+        $this->fertilizerObjectManager = $fertilizerObjectManager;
         $this->formFactory = $formFactory;
     }
 
     /**
-     * @param string|FormTypeInterface $form       The type of the form
-     * @param EntityInterface          $entity     The initial data
-     * @param array                    $parameters
-     * @param string                   $method
+     * @return ObjectManager
+     */
+    public function getFertilizerObjectManager()
+    {
+        return $this->fertilizerObjectManager;
+    }
+
+    /**
+     * @return FormFactoryInterface
+     */
+    public function getFormFactory()
+    {
+        return $this->formFactory;
+    }
+
+    /**
+     * @param FormInterface|string $form
+     * @param EntityInterface      $entity
+     * @param array                $parameters
+     * @param string               $method
      *
-     * @return mixed the submitted entity
+     * @return mixed
+     * @throws InvalidFormException
      */
     public function processForm($form, EntityInterface $entity, array $parameters, $method = "PUT")
     {
@@ -44,7 +61,7 @@ abstract class AbstractHandler implements RESTHandlerInterface
         $form->submit($parameters, 'PATCH' !== $method);
         if ($form->isValid()) {
             $submittedEntity = $form->getData();
-            $this->objectManager->batchPersistAndFlush(array($submittedEntity));
+            $this->fertilizerObjectManager->batchPersistAndFlush(array($submittedEntity));
 
             return $submittedEntity;
         }
