@@ -34,15 +34,15 @@ class ItemHandler extends AbstractHandler
     /**
      * Get a list of entity.
      *
-     * @param int         $limit
-     * @param int         $offset
-     * @param string|null $orderBy
+     * @param int        $limit
+     * @param int        $offset
+     * @param array|null $orderBy
      *
      * @return array
      */
     public function all($limit = 5, $offset = 0, $orderBy = null)
     {
-        return $this->objectManager->all($orderBy, $limit, $offset);
+        return $this->objectManager->all($limit, $offset, $orderBy);
     }
 
     /**
@@ -101,13 +101,13 @@ class ItemHandler extends AbstractHandler
     }
 
     /**
-     * @param Item   $item
-     * @param array  $parameters
-     * @param string $method
+     * @param EntityInterface $item
+     * @param array           $parameters
+     * @param string          $method
      *
      * @return mixed
      */
-    private function processItemForm(Item $item, array $parameters, $method = "PUT")
+    private function processItemForm(EntityInterface $item, array $parameters, $method = "PUT")
     {
         return $this->processForm(
             'fertilizer_item',

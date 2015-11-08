@@ -153,6 +153,47 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
+     */
+    public function testTypeConfiguration()
+    {
+        $this->load();
+
+        $entityNameList = array(
+            'item',
+        );
+        $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
+
+        foreach ($entityNameList as $entityName) {
+            $serviceId = sprintf(
+                'jahhub_fertilizer.repository.%s',
+                $entityName
+            );
+            $classParameterKey = sprintf(
+                '%s.class',
+                $serviceId
+            );
+
+            $this->assertContainerBuilderHasParameter($classParameterKey);
+
+            $this->assertContainerBuilderHasService(
+                $serviceId,
+                $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $interface,
+                    class_implements($this->container->getParameter($classParameterKey))
+                ),
+                sprintf(
+                    'Should implments "%s"',
+                    $interface
+                )
+            );
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getContainerExtensions()

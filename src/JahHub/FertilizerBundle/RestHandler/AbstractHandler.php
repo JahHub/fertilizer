@@ -44,7 +44,7 @@ abstract class AbstractHandler implements RESTHandlerInterface
         $form->submit($parameters, 'PATCH' !== $method);
         if ($form->isValid()) {
             $submittedEntity = $form->getData();
-            $this->batchPersistAndFlush(array($submittedEntity));
+            $this->objectManager->batchPersistAndFlush(array($submittedEntity));
 
             return $submittedEntity;
         }
