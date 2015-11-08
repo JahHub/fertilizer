@@ -1,7 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Repository\EntityRepositoryInterface;
 
@@ -13,19 +13,19 @@ class ObjectManager
     /** @var EntityRepositoryInterface */
     private $repository;
 
-    /** @var EntityManager */
-    private $entityManager;
+    /** @var ManagerRegistry */
+    private $managerRegistry;
 
     /**
      * @param EntityRepositoryInterface $entityRepository
-     * @param EntityManager             $entityManager
+     * @param ManagerRegistry           $managerRegistry
      */
     public function __construct(
         EntityRepositoryInterface $entityRepository,
-        EntityManager $entityManager
+        ManagerRegistry $managerRegistry
     ) {
         $this->repository = $entityRepository;
-        $this->entityManager = $entityManager;
+        $this->managerRegistry = $managerRegistry;
     }
 
     /**
@@ -84,18 +84,19 @@ class ObjectManager
      */
     public function batchPersistAndFlush(array $entities, $batchLimit = 10)
     {
+        $manager = $this->managerRegistry->getManagerForClass($this->repository->getClassName());
         $counter = 0;
         $entitiesToFlush = array();
         foreach ($entities as $entity) {
-            $this->entityManager->persist($entity);
+            $manager->persist($entity);
             $entitiesToFlush[] = $entity;
             if (0 === ++$counter%$batchLimit) {
-                $this->entityManager->flush($entitiesToFlush);
+                $manager->flush($entitiesToFlush);
                 $entitiesToFlush = array();
             }
         }
         if (0 !== $counter%$batchLimit) {
-            $this->entityManager->flush($entitiesToFlush);
+            $manager->flush($entitiesToFlush);
         }
     }
 }
