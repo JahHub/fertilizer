@@ -3,6 +3,7 @@ namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Manager\ObjectManager;
+use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -10,10 +11,9 @@ use Symfony\Component\Form\FormInterface;
 /**
  * Class AbstractHandlerTest
  */
-class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
 {
-
-    /** @var AbstractHandlerMock */
+    /** @var AbstractHandler */
     protected $handler;
 
     /** @var ObjectManager|ObjectProphecy */
@@ -31,10 +31,6 @@ class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->fertilizerObjectManager  = $this->prophesize('JahHub\FertilizerBundle\Manager\ObjectManager');
         $this->formFactory = $this->prophesize('Symfony\Component\Form\FormFactoryInterface');
-        $this->handler = new AbstractHandlerMock(
-            $this->fertilizerObjectManager->reveal(),
-            $this->formFactory->reveal()
-        );
     }
 
     /**

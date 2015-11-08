@@ -2,10 +2,9 @@
 namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
-use JahHub\FertilizerBundle\Manager\ObjectManager;
 use JahHub\FertilizerBundle\RestHandler\ItemHandler;
 use Prophecy\Prophecy\ObjectProphecy;
-use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Class InvalidFormExceptionTest
@@ -24,9 +23,6 @@ class ItemHandlerTest extends AbstractHandlerTest
         parent::setUp();
 
         $this->formName = 'fertilizer_item';
-
-        $this->fertilizerObjectManager  = $this->prophesize('JahHub\FertilizerBundle\Manager\ObjectManager');
-        $this->formFactory = $this->prophesize('Symfony\Component\Form\FormFactoryInterface');
         $this->handler = new ItemHandler(
             $this->fertilizerObjectManager->reveal(),
             $this->formFactory->reveal()

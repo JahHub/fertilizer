@@ -1,6 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Form;
 
+use JahHub\FertilizerBundle\Form\AbstractType;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -8,20 +9,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class AbstractTypeTest
  */
-class AbstractTypeTest extends TypeTestCase
+abstract class AbstractTypeTest extends TypeTestCase
 {
 
-    /** @var AbstractTypeMock */
+    /** @var AbstractType */
     private $type;
 
     /**
-     * @{inheritdoc}
+     * @return AbstractType
      */
-    public function setUp()
+    public function getType()
     {
-        parent::setUp();
+        return $this->type;
+    }
 
-        $this->type = new AbstractTypeMock();
+    /**
+     * @param AbstractType $type
+     */
+    public function setType(AbstractType $type)
+    {
+        $this->type = $type;
     }
 
     /**

@@ -47,10 +47,10 @@ abstract class AbstractHandler implements RESTHandlerInterface
     }
 
     /**
-     * @param FormInterface|string $form
-     * @param EntityInterface      $entity
-     * @param array                $parameters
-     * @param string               $method
+     * @param FormTypeInterface|string $form
+     * @param EntityInterface          $entity
+     * @param array                    $parameters
+     * @param string                   $method
      *
      * @return mixed
      * @throws InvalidFormException

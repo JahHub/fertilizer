@@ -1,11 +1,8 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
-use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
-use JahHub\FertilizerBundle\Manager\ObjectManager;
 use Prophecy\Prophecy\ObjectProphecy;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**

@@ -1,9 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Id\AssignedGenerator;
 use JahHub\FertilizerBundle\Entity\Item;
 use JahHub\FertilizerBundle\Entity\State;
 use JahHub\FertilizerBundle\Entity\Week;
