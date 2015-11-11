@@ -19,15 +19,15 @@ class ItemHandler extends AbstractHandler
     }
 
     /**
+     * @param int        $page
      * @param int        $limit
-     * @param int        $offset
      * @param array|null $orderBy
      *
      * @return Item[]
      */
-    public function all($limit = 5, $offset = 0, $orderBy = null)
+    public function all($page = 1, $limit = 5, $orderBy = null)
     {
-        return $this->getFertilizerObjectManager()->all($limit, $offset, $orderBy);
+        return $this->getFertilizerObjectManager()->all($page, $limit, $orderBy);
     }
 
     /**

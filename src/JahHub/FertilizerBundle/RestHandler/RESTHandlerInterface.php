@@ -56,13 +56,13 @@ interface RESTHandlerInterface
     /**
      * Get a list of object.
      *
+     * @param int        $page
      * @param int        $limit
-     * @param int        $offset
      * @param array|null $orderBy
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0, $orderBy = null);
+    public function all($page = 1, $limit = 5, $orderBy = null);
 
     /**
      * Check if an object exist

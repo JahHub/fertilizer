@@ -50,14 +50,14 @@ class ObjectManager
      * Get a list of entity.
      *
      * @param int        $limit
-     * @param int        $offset
+     * @param int        $page
      * @param array|null $orderBy
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0, $orderBy = null)
+    public function all($limit = 5, $page = 1, $orderBy = null)
     {
-        return $this->repository->all($limit, $offset, $orderBy);
+        return $this->repository->all($limit, $page, $orderBy);
     }
 
     /**

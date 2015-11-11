@@ -32,11 +32,11 @@ class ItemController extends FOSRestController
      *  requirements="\d+",
      *  nullable=true,
      *  default="1",
-     *  description="Offset from which to start listing item."
+     *  description="Page from which to start listing item."
      * )
      * @QueryParam(
      *  name="limit",
-     *  requirements="[5-20]",
+     *  requirements="{5-20}",
      *  default="5",
      *  description="How many item to return."
      * )
@@ -51,9 +51,8 @@ class ItemController extends FOSRestController
     {
         $page = $paramFetcher->get('page');
         $limit = $paramFetcher->get('limit');
-        $offset = $page > 1 ? $page - 1 : 1;
 
-        return $this->container->get('jahhub_fertilizer.handler.item')->all($limit, $offset);
+        return $this->container->get('jahhub_fertilizer.handler.item')->all($page, $limit);
     }
 
     /**

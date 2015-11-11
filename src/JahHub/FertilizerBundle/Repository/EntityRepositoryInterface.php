@@ -35,10 +35,10 @@ interface EntityRepositoryInterface extends ObjectRepository
      * Get a list of object.
      *
      * @param int        $limit
-     * @param int        $offset
+     * @param int        $page
      * @param array|null $orderBy
      *
      * @return array
      */
-    public function all($limit, $offset = 0, $orderBy = null);
+    public function all($limit, $page = 1, $orderBy = null);
 }

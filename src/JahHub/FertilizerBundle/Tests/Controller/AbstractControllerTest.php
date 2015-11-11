@@ -117,7 +117,49 @@ abstract class AbstractControllerTest extends WebTestCase
      */
     protected function doGetRequest($url)
     {
-        $this->getClient()->request('GET', $url, array('ACCEPT' => 'application/json'));
+        $this->getClient()->request(
+            'GET',
+            $url,
+            array(),
+            array(),
+            array('CONTENT_TYPE' => 'application/json')
+        );
+
+        return $this->getClient()->getResponse();
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return null|Response
+     */
+    protected function doHeadRequest($url)
+    {
+        $this->getClient()->request(
+            'HEAD',
+            $url,
+            array(),
+            array(),
+            array('CONTENT_TYPE' => 'application/json')
+        );
+
+        return $this->getClient()->getResponse();
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return null|Response
+     */
+    protected function doPatchRequest($url)
+    {
+        $this->getClient()->request(
+            'PATCH',
+            $url,
+            array('ACCEPT' => 'application/json'),
+            array(),
+            array('CONTENT_TYPE' => 'application/json')
+        );
 
         return $this->getClient()->getResponse();
     }

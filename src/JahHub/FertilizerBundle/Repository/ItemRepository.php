@@ -49,8 +49,16 @@ class ItemRepository extends EntityRepository implements EntityRepositoryInterfa
     /**
      * {@inheritdoc}
      */
-    public function all($limit = 5, $offset = 0, $orderBy = null)
+    public function all($page = 1, $limit = 5, $orderBy = null)
     {
+        if ($limit < 1) {
+            $limit = 1;
+        }
+        if ($page < 1) {
+            $page = 1;
+        }
+        $offset = ($page >= 1 ? $page - 1 : 1) * $limit;
+
         return $this->findBy(array(), $orderBy, $limit, $offset);
     }
 }

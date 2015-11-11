@@ -8,6 +8,106 @@ use FOS\RestBundle\Util\Codes;
  */
 class ItemControllerTest extends AbstractControllerTest
 {
+
+    /**
+     */
+    public function testJsonListAction()
+    {
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
+        $this->loadFixtures($fixtures);
+        $param = array(
+            'page' => 1,
+            'limit' => 2, //should be overrided to 5
+        );
+        $route =  $this->getUrl('api_1_item_list', $param);
+        $response = $this->doGetRequest($route);
+        $this->assertJsonResponse($response, Codes::HTTP_OK);
+        $decoded = json_decode($response->getContent(), true);
+        $this->assertTrue(
+            is_array($decoded),
+            'Should be an array'
+        );
+        $expected = array(
+            array(
+                'id' => 1,
+                'name' => 'name_1',
+            ),
+            array(
+                'id' => 2,
+                'name' => 'name_2',
+            ),
+            array(
+                'id' => 3,
+                'name' => 'name_3',
+            ),
+            array(
+                'id' => 4,
+                'name' => 'name_4',
+            ),
+            array(
+                'id' => 5,
+                'name' => 'name_5',
+            ),
+        );
+
+        $this->assertSame(
+            $expected,
+            $decoded,
+            'Should contains the 5 first items'
+        );
+    }
+
+    /**
+     */
+    public function testJsonListActionPage2()
+    {
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
+        $this->loadFixtures($fixtures);
+        $param = array(
+            'page' => 2,
+        );
+        $route =  $this->getUrl('api_1_item_list', $param);
+        $response = $this->doGetRequest($route);
+        $this->assertJsonResponse($response, Codes::HTTP_OK);
+        $decoded = json_decode($response->getContent(), true);
+        $this->assertTrue(
+            is_array($decoded),
+            'Should be an array'
+        );
+        $expected = array(
+            array(
+                'id' => 6,
+                'name' => 'name_6',
+            ),
+            array(
+                'id' => 7,
+                'name' => 'name_7',
+            ),
+            array(
+                'id' => 8,
+                'name' => 'name_8',
+            ),
+            array(
+                'id' => 9,
+                'name' => 'name_9',
+            ),
+            array(
+                'id' => 10,
+                'name' => 'name_10',
+            ),
+        );
+        $this->assertSame(
+            $expected,
+            $decoded,
+            'Should contains the five items'
+        );
+
+        $this->assertSame(
+            $expected,
+            $decoded
+        );
+    }
+
     /**
      */
     public function testJsonGetAction()
@@ -17,10 +117,40 @@ class ItemControllerTest extends AbstractControllerTest
         $route =  $this->getUrl('api_1_item_get', array('id' => 1));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
-        $content = $response->getContent();
-        $decoded = json_decode($content, true);
+        $decoded = json_decode($response->getContent(), true);
         $this->assertTrue(isset($decoded['id']));
         $this->assertTrue(isset($decoded['name']));
+    }
+
+    /**
+     */
+    public function testJsonHead()
+    {
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
+        $this->loadFixtures($fixtures);
+        $route =  $this->getUrl('api_1_item_get', array('id' => 1));
+        $response = $this->doHeadRequest($route);
+        $this->assertStatusCode($response, Codes::HTTP_OK);
+    }
+
+    /**
+     */
+    public function testJsonHeadWithUnknownItem()
+    {
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
+        $this->loadFixtures($fixtures);
+        $route =  $this->getUrl('api_1_item_get', array('id' => 9999999999999));
+        $response = $this->doHeadRequest($route);
+        $this->assertStatusCode($response, Codes::HTTP_NOT_FOUND);
+    }
+
+    /**
+     */
+    public function testJsonGetActionWithUnknownId()
+    {
+        $route =  $this->getUrl('api_1_item_get', array('id' => 9999999));
+        $response = $this->doGetRequest($route);
+        $this->assertJsonResponse($response, Codes::HTTP_NOT_FOUND);
     }
 
     /**
@@ -97,7 +227,7 @@ class ItemControllerTest extends AbstractControllerTest
         $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
         $this->loadFixtures($fixtures);
 
-        $route = $this->getUrl('api_1_item_get', array('id' => $id));
+        $route = $this->getUrl('api_1_item_put', array('id' => $id));
         $param = array(
             'name' => 'custom_name',
         );
@@ -107,7 +237,7 @@ class ItemControllerTest extends AbstractControllerTest
 
         $this->assertStatusCode($response, $httpCode);
         if ($assertFullRedirection) {
-            $url = $this->getUrl('api_1_item_get', array('id' => $id), true);
+            $url = $this->getUrl('api_1_item_put', array('id' => $id), true);
             $this->assertIsRedirectionTo($response, $url);
         } else {
             $url = str_replace(
@@ -117,6 +247,24 @@ class ItemControllerTest extends AbstractControllerTest
             );
             $this->assertIsRedirectionToPartialUrl($response, $url);
         }
+    }
+
+    /**
+     */
+    public function testJsonPutActionWithBadParameters()
+    {
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
+        $this->loadFixtures($fixtures);
+
+        $route = $this->getUrl('api_1_item_put', array('id' => 1));
+        $param = array(
+            'plip' => 'plop',
+        );
+        $jsonParam = json_encode($param);
+
+        $response = $this->doPutRequest($route, $jsonParam);
+
+        $this->assertJsonResponse($response, Codes::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -143,7 +291,7 @@ class ItemControllerTest extends AbstractControllerTest
     {
         return array(
             'null' => array(null),
-            'emtpty' => array(''),
+            'empty' => array(''),
         );
     }
 
