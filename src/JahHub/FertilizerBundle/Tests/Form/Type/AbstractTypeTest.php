@@ -13,7 +13,7 @@ abstract class AbstractTypeTest extends TypeTestCase
 {
 
     /** @var AbstractType */
-    private $type;
+    protected $type;
 
     /**
      * @return AbstractType

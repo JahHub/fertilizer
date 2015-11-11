@@ -35,6 +35,6 @@ class ItemType extends AbstractType
      */
     public function getName()
     {
-        return 'fertilizer_item';//@codeCoverageIgnore
+        return 'fertilizer_item';
     }
 }

@@ -2,9 +2,7 @@
 namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use JahHub\FertilizerBundle\Entity\Item;
 use JahHub\FertilizerBundle\Entity\State;
-use JahHub\FertilizerBundle\Entity\Week;
 
 /**
  * Class LoadStateData
@@ -38,10 +36,10 @@ class LoadStateData extends AbstractLoadEntityData
      */
     public function createState($id, $name)
     {
-        $item = new State();
-        $item->setName($name);
-        $this->setEntityId($item, $id);
+        $state = new State();
+        $state->setName($name);
+        $this->setEntityId($state, $id);
 
-        return $item;
+        return $state;
     }
 }
