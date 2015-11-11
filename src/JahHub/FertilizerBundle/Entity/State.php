@@ -4,7 +4,7 @@ namespace JahHub\FertilizerBundle\Entity;
 /**
  * Class State
  */
-class State
+class State implements EntityInterface
 {
     /** @var int */
     private $id;

@@ -5,11 +5,16 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="jahhub_fertilizer.repository.item.class">JahHub\FertilizerBundle\Repository\ItemRepository</parameter>
+        <parameter key="jahhub_fertilizer.repository.state.class">JahHub\FertilizerBundle\Repository\StateRepository</parameter>
     </parameters>
     <services>
         <service id="jahhub_fertilizer.repository.item" class="%jahhub_fertilizer.repository.item.class%">
             <factory service="doctrine.orm.entity_manager" method="getRepository" />
             <argument>%jahhub_fertilizer.entity.item.class%</argument>
+        </service>
+        <service id="jahhub_fertilizer.repository.state" class="%jahhub_fertilizer.repository.state.class%">
+            <factory service="doctrine.orm.entity_manager" method="getRepository" />
+            <argument>%jahhub_fertilizer.entity.state.class%</argument>
         </service>
     </services>
 </container>
