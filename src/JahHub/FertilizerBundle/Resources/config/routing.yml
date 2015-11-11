@@ -1,0 +1,5 @@
+jahhub_fertilizer_item:
+    type: rest
+    prefix: /items
+    resource: "JahHub\FertilizerBundle\Controller\ItemController"
+    name_prefix:  api_1_item_ # naming collision

@@ -1,0 +1,12 @@
+JahHub\FertilizerBundle\Entity\Item:
+    properties:
+        name:
+            - NotBlank:
+                message: "NOT_BLANK"
+            - NotNull:
+                message: "NOT_NULL"
+            - Length:
+                min: 3
+                max: 100
+                minMessage: "AT_LEAST_{min}"
+                maxMessage: "NOT_MORE_THAN_{max}"
