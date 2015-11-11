@@ -1,7 +1,7 @@
 <?php
-namespace JahHub\FertilizerBundle\Tests\Form;
+namespace JahHub\FertilizerBundle\Tests\Form\Type;
 
-use JahHub\FertilizerBundle\Form\ItemType;
+use JahHub\FertilizerBundle\Form\Type\ItemType;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

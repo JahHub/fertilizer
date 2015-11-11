@@ -170,7 +170,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
         );
-        $parentClass = 'JahHub\FertilizerBundle\Form\AbstractType';
+        $parentClass = 'JahHub\FertilizerBundle\Form\Type\AbstractType';
 
         foreach ($entityNameList as $entityName) {
             $serviceId = sprintf(
