@@ -4,7 +4,7 @@ namespace JahHub\FertilizerBundle\RestHandler;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 
 /**
- * Class StateHandler
+ * Interface RESTHandlerInterface
  */
 interface RESTHandlerInterface
 {

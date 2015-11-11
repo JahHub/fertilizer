@@ -22,7 +22,7 @@ class ItemTypeTest extends AbstractTypeTest
     {
         parent::setUp();
 
-        $this->type = new ItemType();
+        $this->setType(new ItemType());
     }
 
     /**
@@ -36,7 +36,7 @@ class ItemTypeTest extends AbstractTypeTest
         $optionResolver->setDefault('data_class', 'JahHub\FertilizerBundle\Entity\Item')
             ->shouldBeCalledTimes(1);
 
-        $this->type->configureOptions($optionResolver->reveal());
+        $this->getType()->configureOptions($optionResolver->reveal());
     }
 
     public function testBuild()
@@ -46,6 +46,6 @@ class ItemTypeTest extends AbstractTypeTest
         $formBuilder->add('name', 'text')
             ->shouldBeCalledTimes(1);
 
-        $this->type->buildForm($formBuilder->reveal(), array());
+        $this->getType()->buildForm($formBuilder->reveal(), array());
     }
 }
