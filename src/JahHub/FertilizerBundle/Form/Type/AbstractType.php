@@ -1,5 +1,5 @@
 <?php
-namespace JahHub\FertilizerBundle\Form;
+namespace JahHub\FertilizerBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType as BaseAbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

@@ -4,7 +4,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="jahhub_fertilizer.type.item.class">JahHub\FertilizerBundle\Form\ItemType</parameter>
+        <parameter key="jahhub_fertilizer.type.item.class">JahHub\FertilizerBundle\Form\Type\ItemType</parameter>
         <parameter key="jahhub_fertilizer.type.week_relationship.class">JahHub\FertilizerBundle\Form\WeekRelationShipType</parameter>
         <parameter key="jahhub_fertilizer.type.state.class">JahHub\FertilizerBundle\Form\StateType</parameter>
     </parameters>

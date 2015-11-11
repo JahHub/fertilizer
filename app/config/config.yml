@@ -39,6 +39,7 @@ assetic:
 
 doctrine:
     dbal:
+        server_version: %database_server_version%
         driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"

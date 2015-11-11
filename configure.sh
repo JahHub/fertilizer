@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CONFIGURATION='DEV'
+DATABASE_SERVER_VERSION='5.7.9'
 DATABASE_HOST='127.0.0.1'
 DATABASE_PORT='~'
 DATABASE_USER='root'
@@ -23,14 +24,16 @@ fi
 
 echo "Detected configuration : $CONFIGURATION"
 echo "Parameters:"
-echo -e "\t - DATABASE_HOST =>     '$DATABASE_HOST'"
-echo -e "\t - DATABASE_PORT =>     '$DATABASE_PORT'"
-echo -e "\t - DATABASE_USER =>     '$DATABASE_USER'"
-echo -e "\t - DATABASE_PASSWORD => '$DATABASE_PASSWORD'"
-echo -e "\t - SECRET =>            '$SECRET'"
+echo -e "\t - DATABASE_SERVER_VERSION => '$DATABASE_SERVER_VERSION'"
+echo -e "\t - DATABASE_HOST =>           '$DATABASE_HOST'"
+echo -e "\t - DATABASE_PORT =>           '$DATABASE_PORT'"
+echo -e "\t - DATABASE_USER =>           '$DATABASE_USER'"
+echo -e "\t - DATABASE_PASSWORD =>       '$DATABASE_PASSWORD'"
+echo -e "\t - SECRET =>                  '$SECRET'"
 
 echo "Creating app/config/parameters.yml"
 sed \
+    -e "s/\${DATABASE_SERVER_VERSION}/$DATABASE_SERVER_VERSION/" \
     -e "s/\${DATABASE_HOST}/$DATABASE_HOST/" \
     -e "s/\${DATABASE_PORT}/$DATABASE_PORT/" \
     -e "s/\${DATABASE_USER}/$DATABASE_USER/" \
