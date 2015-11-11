@@ -45,7 +45,7 @@ class ItemRepositoryTest extends AbstractRepositoryTest
         $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData'));
 
         $this->assertTrue($this->repository->exist(1));
-        $this->assertFalse($this->repository->exist(99999999999999));
+        $this->assertFalse($this->repository->exist(self::UNKNOWN_ID));
     }
 
     /**
@@ -66,13 +66,18 @@ class ItemRepositoryTest extends AbstractRepositoryTest
         $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData'));
 
         $limit = 2;
-        $entityList = $this->repository->all($limit);
+        $entityList = $this->repository->all(1, $limit);
 
         $this->assertCount($limit, $entityList);
         $this->assertContainsOnlyInstancesOf($this->entityClassName, $entityList);
 
-        $limit = 2;
-        $entityList = $this->repository->all($limit, 2);
+        $limit = 3;
+        $entityList = $this->repository->all(1, $limit);
+
+        $this->assertCount($limit, $entityList);
+        $this->assertContainsOnlyInstancesOf($this->entityClassName, $entityList);
+
+        $entityList = $this->repository->all(0, 0);
 
         $this->assertCount(1, $entityList);
         $this->assertContainsOnlyInstancesOf($this->entityClassName, $entityList);

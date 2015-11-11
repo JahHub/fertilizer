@@ -10,6 +10,8 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 abstract class AbstractRepositoryTest extends WebTestCase
 {
 
+    const UNKNOWN_ID = 99999999999999999999;
+
     /** @var EntityManager */
     private $entityManager;
     /**

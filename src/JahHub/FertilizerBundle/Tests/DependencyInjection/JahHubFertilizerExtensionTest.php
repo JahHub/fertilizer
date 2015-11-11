@@ -19,6 +19,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
         );
+        $interface = 'JahHub\FertilizerBundle\Entity\EntityInterface';
 
         foreach ($entityNameList as $entityName) {
             $classParameterKey = sprintf(
@@ -29,8 +30,12 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
             $this->assertTrue(
                 in_array(
-                    'JahHub\FertilizerBundle\Entity\EntityInterface',
+                    $interface,
                     class_implements($this->container->getParameter($classParameterKey))
+                ),
+                sprintf(
+                    'Should implements "%s"',
+                    $interface
                 )
             );
         }
@@ -45,6 +50,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
         );
+        $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
         foreach ($entityNameList as $entityName) {
             $serviceId = sprintf(
@@ -61,6 +67,59 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             $this->assertContainerBuilderHasService(
                 $serviceId,
                 $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $interface,
+                    class_implements($this->container->getParameter($classParameterKey))
+                ),
+                sprintf(
+                    'Should implements "%s"',
+                    $interface
+                )
+            );
+        }
+    }
+
+    /**
+     */
+    public function testHandlerConfiguration()
+    {
+        $this->load();
+
+        $entityNameList = array(
+            'item',
+        );
+
+        $interface = 'JahHub\FertilizerBundle\RestHandler\RESTHandlerInterface';
+
+        foreach ($entityNameList as $entityName) {
+            $serviceId = sprintf(
+                'jahhub_fertilizer.handler.%s',
+                $entityName
+            );
+            $classParameterKey = sprintf(
+                '%s.class',
+                $serviceId
+            );
+
+            $this->assertContainerBuilderHasParameter($classParameterKey);
+
+            $this->assertContainerBuilderHasService(
+                $serviceId,
+                $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $interface,
+                    class_implements($this->container->getParameter($classParameterKey))
+                ),
+                sprintf(
+                    'Should implements "%s"',
+                    $interface
+                )
             );
         }
     }
@@ -75,20 +134,70 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'item',
         );
 
+        $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
+        $classParameterKey = 'jahhub_fertilizer.manager.object.class';
+
         foreach ($entityNameList as $entityName) {
             $serviceId = sprintf(
-                'jahhub_fertilizer.repository.%s',
+                'jahhub_fertilizer.manager.%s',
+                $entityName
+            );
+
+            $this->assertContainerBuilderHasService(
+                $serviceId,
+                $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $parentClass,
+                    class_parents($this->container->getParameter($classParameterKey))
+                ) || $parentClass == $this->container->getParameter($classParameterKey),
+                sprintf(
+                    'Should extend "%s"',
+                    $parentClass
+                )
+            );
+        }
+    }
+
+    /**
+     */
+    public function testTypeConfiguration()
+    {
+        $this->load();
+
+        $entityNameList = array(
+            'item',
+        );
+        $parentClass = 'JahHub\FertilizerBundle\Form\AbstractType';
+
+        foreach ($entityNameList as $entityName) {
+            $serviceId = sprintf(
+                'jahhub_fertilizer.type.%s',
                 $entityName
             );
             $classParameterKey = sprintf(
                 '%s.class',
                 $serviceId
             );
+
             $this->assertContainerBuilderHasParameter($classParameterKey);
 
             $this->assertContainerBuilderHasService(
                 $serviceId,
                 $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $parentClass,
+                    class_parents($this->container->getParameter($classParameterKey))
+                ) || $parentClass == $this->container->getParameter($classParameterKey),
+                sprintf(
+                    'Should extend "%s"',
+                    $parentClass
+                )
             );
         }
     }

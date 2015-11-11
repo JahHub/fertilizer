@@ -2,11 +2,11 @@
 namespace JahHub\FertilizerBundle\Tests\Manager;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager as DoctrineObjectManager;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Manager\ObjectManager;
 use JahHub\FertilizerBundle\Repository\EntityRepositoryInterface;
 use Prophecy\Prophecy\ObjectProphecy;
-use Doctrine\Common\Persistence\ObjectManager as DoctrineObjectManager;
 
 /**
  * Class ObjectManagerTest
