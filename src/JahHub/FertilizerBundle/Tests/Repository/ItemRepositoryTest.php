@@ -45,7 +45,7 @@ class ItemRepositoryTest extends AbstractRepositoryTest
         $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData'));
 
         $this->assertTrue($this->repository->exist(1));
-        $this->assertFalse($this->repository->exist(99999999999999));
+        $this->assertFalse($this->repository->exist(self::UNKNOWN_ID));
     }
 
     /**

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class AbstractControllerTest extends WebTestCase
 {
+    const UNKNOWN_ID = 999999999999999999;
+
     /** @var Client */
     private $client;
 

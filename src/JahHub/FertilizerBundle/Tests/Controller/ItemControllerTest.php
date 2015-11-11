@@ -8,7 +8,6 @@ use FOS\RestBundle\Util\Codes;
  */
 class ItemControllerTest extends AbstractControllerTest
 {
-
     /**
      */
     public function testJsonListAction()
@@ -139,7 +138,7 @@ class ItemControllerTest extends AbstractControllerTest
     {
         $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
         $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_item_get', array('id' => 9999999999999));
+        $route =  $this->getUrl('api_1_item_get', array('id' => self::UNKNOWN_ID));
         $response = $this->doHeadRequest($route);
         $this->assertStatusCode($response, Codes::HTTP_NOT_FOUND);
     }
@@ -148,7 +147,7 @@ class ItemControllerTest extends AbstractControllerTest
      */
     public function testJsonGetActionWithUnknownId()
     {
-        $route =  $this->getUrl('api_1_item_get', array('id' => 9999999));
+        $route =  $this->getUrl('api_1_item_get', array('id' => self::UNKNOWN_ID));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_NOT_FOUND);
     }
@@ -307,7 +306,7 @@ class ItemControllerTest extends AbstractControllerTest
                 true,
             ),
             'Should create item' => array(
-                9999999999999,
+                self::UNKNOWN_ID,
                 Codes::HTTP_CREATED,
                 false,
             ),
@@ -322,7 +321,7 @@ class ItemControllerTest extends AbstractControllerTest
                 Codes::HTTP_OK,
             ),
             'Delete not existing item' => array(
-                999999999,
+                self::UNKNOWN_ID,
                 Codes::HTTP_NOT_FOUND,
             ),
         );
