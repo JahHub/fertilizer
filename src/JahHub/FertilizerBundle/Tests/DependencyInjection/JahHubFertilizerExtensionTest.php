@@ -188,12 +188,24 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                 '%s.class',
                 $serviceId
             );
+            $formTypeAlias= sprintf(
+                'fertilizer_%s',
+                $entityName
+            );
 
             $this->assertContainerBuilderHasParameter($classParameterKey);
 
             $this->assertContainerBuilderHasService(
                 $serviceId,
                 $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertContainerBuilderHasServiceDefinitionWithTag(
+                $serviceId,
+                'form.type',
+                array(
+                    'alias' => $formTypeAlias
+                )
             );
 
             $this->assertTrue(
