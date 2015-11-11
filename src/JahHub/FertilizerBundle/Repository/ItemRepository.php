@@ -55,9 +55,10 @@ class ItemRepository extends EntityRepository implements EntityRepositoryInterfa
             $limit = 1;
         }
         if ($page < 1) {
-            $page = 1;
+            $offset = 0;
+        } else {
+            $offset = ($page - 1) * $limit;
         }
-        $offset = ($page >= 1 ? $page - 1 : 1) * $limit;
 
         return $this->findBy(array(), $orderBy, $limit, $offset);
     }
