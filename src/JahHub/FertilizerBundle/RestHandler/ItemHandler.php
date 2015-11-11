@@ -3,7 +3,6 @@ namespace JahHub\FertilizerBundle\RestHandler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Entity\Item;
-use JahHub\FertilizerBundle\Manager\ObjectManager;
 
 /**
  * Class ItemHandler

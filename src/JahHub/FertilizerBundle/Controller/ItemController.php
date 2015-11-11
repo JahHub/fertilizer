@@ -9,7 +9,6 @@ use FOS\RestBundle\Util\Codes;
 use JahHub\FertilizerBundle\Entity\Item;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
