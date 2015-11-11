@@ -18,13 +18,16 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 class ItemController extends FOSRestController
 {
     /**
+     * List Items by {page} and {limit}
+     *
      * @ApiDoc(
      *   resource = true,
      *   description = "List all items.",
      *   output = "array<JahHub\FertilizerBundle\Entity\Item>",
      *   statusCodes = {
      *     200 = "Returned when successful"
-     *   }
+     *   },
+     *   section = "Item"
      * )
      *
      * @QueryParam(
@@ -32,13 +35,13 @@ class ItemController extends FOSRestController
      *  requirements="\d+",
      *  nullable=true,
      *  default="1",
-     *  description="Page from which to start listing item."
+     *  description="Page from which to start listing items."
      * )
      * @QueryParam(
      *  name="limit",
      *  requirements="{5-20}",
      *  default="5",
-     *  description="How many item to return."
+     *  description="How many items to return."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")
@@ -56,14 +59,16 @@ class ItemController extends FOSRestController
     }
 
     /**
+     * Get an Item for a given id
+     *
      * @ApiDoc(
      *   resource = true,
-     *   description = "Gets a Item for a given id",
      *   output = "JahHub\FertilizerBundle\Entity\Item",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when item is not found"
-     *   }
+     *   },
+     *   section = "Item"
      * )
      * @Route(requirements={"_format"="json|xml"})
      *
@@ -79,13 +84,14 @@ class ItemController extends FOSRestController
     }
 
     /**
+     * Delete an item
      * @ApiDoc(
      *   resource = true,
-     *   description = "Delete an item",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when item is not found"
-     *   }
+     *   },
+     *   section = "Item"
      * )
      * @Route(requirements={"_format"="json|xml"})
      *
@@ -107,14 +113,16 @@ class ItemController extends FOSRestController
     }
 
     /**
+     * Creates a new item from the submitted data.
      * @ApiDoc(
      *   resource = true,
-     *   description = "Creates a new item from the submitted data.",
+     *   description = "Creates a new item",
      *   input = "JahHub\FertilizerBundle\Entity\Item",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
-     *   }
+     *   },
+     *   section = "Item"
      * )
      * @Route(requirements={"_format"="json|xml"})
      *
@@ -143,16 +151,18 @@ class ItemController extends FOSRestController
     }
 
     /**
-     * Update existing item from the submitted data or create a new item at a specific location.
+     * Update existing item from the submitted data or create a new item
      *
      * @ApiDoc(
+     *   description = "Update existing or create a new item",
      *   resource = true,
      *   input = "JahHub\FertilizerBundle\Entity\Item",
      *   statusCodes = {
      *     201 = "Returned when Item is created",
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
-     *   }
+     *   },
+     *   section = "Item"
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
