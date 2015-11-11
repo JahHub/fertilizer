@@ -1,5 +1,4 @@
-jahhub_fertilizer_item:
+jahhub_fertilizer_v1:
     type: rest
-    prefix: /v1/items
-    resource: "JahHub\FertilizerBundle\Controller\ItemController"
-    name_prefix:  api_1_item_ # naming collision
+    prefix: /api/v1
+    resource: "@JahHubFertilizerBundle/Resources/config/routing.yml"

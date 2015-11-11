@@ -159,7 +159,7 @@ class ItemControllerTest extends AbstractControllerTest
                 true,
             ),
             'Should create item' => array(
-                2,
+                9999999999999,
                 Codes::HTTP_CREATED,
                 false,
             ),
