@@ -1,9 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
@@ -17,13 +15,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 abstract class AbstractController extends FOSRestController
 {
     /**
-     * @Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id state id
+     * @param int $id entity id
      *
      * @return View
      *
-     * @throws NotFoundHttpException when state not exist
+     * @throws NotFoundHttpException when entity not exist
      */
     public function handleDelete($id)
     {
@@ -97,7 +93,7 @@ abstract class AbstractController extends FOSRestController
     }
 
     /**
-     * Fetch an state or throw an 404 Exception.
+     * Fetch an entity or throw an 404 Exception.
      *
      * @param mixed $id
      *
