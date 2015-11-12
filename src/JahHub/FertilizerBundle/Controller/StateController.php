@@ -6,6 +6,7 @@ use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
+use FOS\RestBundle\View\View;
 use JahHub\FertilizerBundle\Entity\State;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
@@ -30,17 +31,33 @@ class StateController extends AbstractController
      *   section = "State"
      * )
      *
+     * @QueryParam(
+     *  name="page",
+     *  requirements="\d+",
+     *  nullable=true,
+     *  default="1",
+     *  description="Page from which to start listing states."
+     * )
+     * @QueryParam(
+     *  name="limit",
+     *  requirements="{5-20}",
+     *  default="5",
+     *  description="How many states to return."
+     * )
+     *
+     * @Route(requirements={"_format"="json|xml"}, path="")
+     *
      * @param ParamFetcherInterface $paramFetcher param fetcher service
      *
-     * @return array
+     * @return State[]
      */
     public function listAction(ParamFetcherInterface $paramFetcher)
     {
-        return parent::listAction($paramFetcher);
+        return $this->getHandler()->all($paramFetcher->get('page'), $paramFetcher->get('limit'));
     }
 
     /**
-     * Get an State for a given id
+     * Get a State for a given id
      *
      * @ApiDoc(
      *   resource = true,
@@ -52,6 +69,8 @@ class StateController extends AbstractController
      *   section = "State"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id state id
      *
      * @return State
@@ -60,11 +79,12 @@ class StateController extends AbstractController
      */
     public function getAction($id)
     {
-        return parent::getAction($id);
+        return $this->getOr404($id);
     }
 
     /**
-     * Delete an state
+     * Delete a state
+     *
      * @ApiDoc(
      *   resource = true,
      *   statusCodes = {
@@ -74,15 +94,17 @@ class StateController extends AbstractController
      *   section = "State"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id state id
      *
-     * @return State
+     * @return View
      *
      * @throws NotFoundHttpException when state not exist
      */
     public function deleteAction($id)
     {
-        parent::deleteAction($id);
+        return $this->handleDelete($id);
     }
 
     /**
@@ -98,11 +120,13 @@ class StateController extends AbstractController
      *   section = "State"
      * )
      *
-     * @return array|\FOS\RestBundle\View\View
+     * @Route(requirements={"_format"="json|xml"})
+     *
+     * @return array|View
      */
     public function postAction()
     {
-        return parent::postAction();
+        return $this->handlePost('api_1_state_get');
     }
 
     /**
@@ -120,13 +144,15 @@ class StateController extends AbstractController
      *   section = "State"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id
      *
      * @return array|\FOS\RestBundle\View\View
      */
     public function putAction($id)
     {
-        return parent::putAction($id);
+        return $this->handlePut('api_1_state_get', $id);
     }
 
     /**

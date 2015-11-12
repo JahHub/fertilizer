@@ -30,13 +30,29 @@ class ItemController extends AbstractController
      *   section = "Item"
      * )
      *
+     * @QueryParam(
+     *  name="page",
+     *  requirements="\d+",
+     *  nullable=true,
+     *  default="1",
+     *  description="Page from which to start listing states."
+     * )
+     * @QueryParam(
+     *  name="limit",
+     *  requirements="{5-20}",
+     *  default="5",
+     *  description="How many states to return."
+     * )
+     *
+     * @Route(requirements={"_format"="json|xml"}, path="")
+     *
      * @param ParamFetcherInterface $paramFetcher param fetcher service
      *
-     * @return array
+     * @return Item[]
      */
     public function listAction(ParamFetcherInterface $paramFetcher)
     {
-        parent::listAction($paramFetcher);
+        return $this->getHandler()->all($paramFetcher->get('page'), $paramFetcher->get('limit'));
     }
 
     /**
@@ -52,6 +68,8 @@ class ItemController extends AbstractController
      *   section = "Item"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id item id
      *
      * @return Item
@@ -60,7 +78,7 @@ class ItemController extends AbstractController
      */
     public function getAction($id)
     {
-        parent::getAction($id);
+        return $this->getOr404($id);
     }
 
     /**
@@ -74,6 +92,8 @@ class ItemController extends AbstractController
      *   section = "Item"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id item id
      *
      * @return Item
@@ -82,7 +102,7 @@ class ItemController extends AbstractController
      */
     public function deleteAction($id)
     {
-        parent::deleteAction($id);
+        return $this->handleDelete($id);
     }
 
     /**
@@ -99,11 +119,13 @@ class ItemController extends AbstractController
      *   section = "Item"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @return array|\FOS\RestBundle\View\View
      */
     public function postAction()
     {
-        return parent::postAction();
+        return $this->handlePost('api_1_item_get');
     }
 
     /**
@@ -121,13 +143,15 @@ class ItemController extends AbstractController
      *   section = "Item"
      * )
      *
+     * @Route(requirements={"_format"="json|xml"})
+     *
      * @param int $id
      *
      * @return array|\FOS\RestBundle\View\View
      */
     public function putAction($id)
     {
-        return parent::putAction($id);
+        return $this->handlePut('api_1_item_get', $id);
     }
 
     /**

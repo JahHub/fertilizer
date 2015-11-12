@@ -1,15 +1,14 @@
 <?php
 namespace JahHub\FertilizerBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
-use JahHub\FertilizerBundle\Entity\State;
+use FOS\RestBundle\View\View;
+use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -18,58 +17,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 abstract class AbstractController extends FOSRestController
 {
     /**
-     * @QueryParam(
-     *  name="page",
-     *  requirements="\d+",
-     *  nullable=true,
-     *  default="1",
-     *  description="Page from which to start listing states."
-     * )
-     * @QueryParam(
-     *  name="limit",
-     *  requirements="{5-20}",
-     *  default="5",
-     *  description="How many states to return."
-     * )
-     *
-     * @Route(requirements={"_format"="json|xml"}, path="")
-     *
-     * @param ParamFetcherInterface $paramFetcher param fetcher service
-     *
-     * @return array
-     */
-    public function listAction(ParamFetcherInterface $paramFetcher)
-    {
-        $page = $paramFetcher->get('page');
-        $limit = $paramFetcher->get('limit');
-
-        return $this->getHandler()->all($page, $limit);
-    }
-
-    /**
      * @Route(requirements={"_format"="json|xml"})
      *
      * @param int $id state id
      *
-     * @return State
+     * @return View
      *
      * @throws NotFoundHttpException when state not exist
      */
-    public function getAction($id)
-    {
-        return $this->getOr404($id);
-    }
-
-    /**
-     * @Route(requirements={"_format"="json|xml"})
-     *
-     * @param int $id state id
-     *
-     * @return State
-     *
-     * @throws NotFoundHttpException when state not exist
-     */
-    public function deleteAction($id)
+    public function handleDelete($id)
     {
         $handler = $this->getHandler();
         if (!($handler->exist($id))) {
@@ -82,24 +38,22 @@ abstract class AbstractController extends FOSRestController
     }
 
     /**
-     * @Route(requirements={"_format"="json|xml"})
-     *
-     * @return array|\FOS\RestBundle\View\View
+     * @return EntityInterface
      */
-    public function postAction()
+    protected function handlePost($returnRouteName)
     {
         try {
-            $state = $this->getHandler()->post(
+            $entity = $this->getHandler()->post(
                 $this->container->get('request')->request->all()
             );
 
             $routeOptions = array(
-                'id' => $state->getId(),
+                'id' => $entity->getId(),
                 '_format' => $this->container->get('request')->get('_format'),
             );
 
             return $this->routeRedirectView(
-                'api_1_state_get',
+                $returnRouteName,
                 $routeOptions,
                 Codes::HTTP_CREATED
             );
@@ -109,35 +63,33 @@ abstract class AbstractController extends FOSRestController
     }
 
     /**
-     * @Route(requirements={"_format"="json|xml"})
+     * @param $id
      *
-     * @param int $id
-     *
-     * @return array|\FOS\RestBundle\View\View
+     * @return array (EntityInterface, statusCode)
      */
-    public function putAction($id)
+    protected function handlePut($returnRouteName, $id)
     {
         try {
             $handler = $this->getHandler();
-            if (!($state = $handler->get($id))) {
+            if (!($entity = $handler->get($id))) {
                 $statusCode = Codes::HTTP_CREATED;
-                $state = $handler->post(
+                $entity = $handler->post(
                     $this->container->get('request')->request->all()
                 );
             } else {
                 $statusCode = Codes::HTTP_NO_CONTENT;
-                $state = $handler->put(
-                    $state,
+                $entity = $handler->put(
+                    $entity,
                     $this->container->get('request')->request->all()
                 );
             }
 
             $routeOptions = array(
-                'id' => $state->getId(),
+                'id' => $entity->getId(),
                 '_format' => $this->container->get('request')->get('_format'),
             );
 
-            return $this->routeRedirectView('api_1_state_get', $routeOptions, $statusCode);
+            return $this->routeRedirectView($returnRouteName, $routeOptions, $statusCode);
 
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
@@ -149,7 +101,7 @@ abstract class AbstractController extends FOSRestController
      *
      * @param mixed $id
      *
-     * @return State
+     * @return EntityInterface
      *
      * @throws NotFoundHttpException
      */
