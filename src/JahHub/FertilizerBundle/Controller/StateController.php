@@ -8,13 +8,14 @@ use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use JahHub\FertilizerBundle\Entity\State;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
+use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class StateController
  */
-class StateController extends FOSRestController
+class StateController extends AbstractController
 {
     /**
      * List States by {page} and {limit}
@@ -29,32 +30,13 @@ class StateController extends FOSRestController
      *   section = "State"
      * )
      *
-     * @QueryParam(
-     *  name="page",
-     *  requirements="\d+",
-     *  nullable=true,
-     *  default="1",
-     *  description="Page from which to start listing states."
-     * )
-     * @QueryParam(
-     *  name="limit",
-     *  requirements="{5-20}",
-     *  default="5",
-     *  description="How many states to return."
-     * )
-     *
-     * @Route(requirements={"_format"="json|xml"}, path="")
-     *
      * @param ParamFetcherInterface $paramFetcher param fetcher service
      *
      * @return array
      */
     public function listAction(ParamFetcherInterface $paramFetcher)
     {
-        $page = $paramFetcher->get('page');
-        $limit = $paramFetcher->get('limit');
-
-        return $this->container->get('jahhub_fertilizer.handler.state')->all($page, $limit);
+        return parent::listAction($paramFetcher);
     }
 
     /**
@@ -69,7 +51,6 @@ class StateController extends FOSRestController
      *   },
      *   section = "State"
      * )
-     * @Route(requirements={"_format"="json|xml"})
      *
      * @param int $id state id
      *
@@ -79,7 +60,7 @@ class StateController extends FOSRestController
      */
     public function getAction($id)
     {
-        return $this->getOr404($id);
+        return parent::getAction($id);
     }
 
     /**
@@ -92,7 +73,6 @@ class StateController extends FOSRestController
      *   },
      *   section = "State"
      * )
-     * @Route(requirements={"_format"="json|xml"})
      *
      * @param int $id state id
      *
@@ -102,13 +82,7 @@ class StateController extends FOSRestController
      */
     public function deleteAction($id)
     {
-        if (!($this->container->get('jahhub_fertilizer.handler.state')->exist($id))) {
-            throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
-        } else {
-            $this->container->get('jahhub_fertilizer.handler.state')->delete($id);
-
-            return $this->view(array(), Codes::HTTP_OK);
-        }
+        parent::deleteAction($id);
     }
 
     /**
@@ -123,30 +97,12 @@ class StateController extends FOSRestController
      *   },
      *   section = "State"
      * )
-     * @Route(requirements={"_format"="json|xml"})
      *
      * @return array|\FOS\RestBundle\View\View
      */
     public function postAction()
     {
-        try {
-            $state = $this->container->get('jahhub_fertilizer.handler.state')->post(
-                $this->container->get('request')->request->all()
-            );
-
-            $routeOptions = array(
-                'id' => $state->getId(),
-                '_format' => $this->container->get('request')->get('_format'),
-            );
-
-            return $this->routeRedirectView(
-                'api_1_state_get',
-                $routeOptions,
-                Codes::HTTP_CREATED
-            );
-        } catch (InvalidFormException $exception) {
-            return $exception->getForm();
-        }
+        return parent::postAction();
     }
 
     /**
@@ -164,55 +120,20 @@ class StateController extends FOSRestController
      *   section = "State"
      * )
      *
-     * @Route(requirements={"_format"="json|xml"})
-     *
      * @param int $id
      *
      * @return array|\FOS\RestBundle\View\View
      */
     public function putAction($id)
     {
-        try {
-            if (!($state = $this->container->get('jahhub_fertilizer.handler.state')->get($id))) {
-                $statusCode = Codes::HTTP_CREATED;
-                $state = $this->container->get('jahhub_fertilizer.handler.state')->post(
-                    $this->container->get('request')->request->all()
-                );
-            } else {
-                $statusCode = Codes::HTTP_NO_CONTENT;
-                $state = $this->container->get('jahhub_fertilizer.handler.state')->put(
-                    $state,
-                    $this->container->get('request')->request->all()
-                );
-            }
-
-            $routeOptions = array(
-                'id' => $state->getId(),
-                '_format' => $this->container->get('request')->get('_format'),
-            );
-
-            return $this->routeRedirectView('api_1_state_get', $routeOptions, $statusCode);
-
-        } catch (InvalidFormException $exception) {
-            return $exception->getForm();
-        }
+        return parent::putAction($id);
     }
 
     /**
-     * Fetch an state or throw an 404 Exception.
-     *
-     * @param mixed $id
-     *
-     * @return State
-     *
-     * @throws NotFoundHttpException
+     * {@inheritdoc}
      */
-    protected function getOr404($id)
+    protected function getHandler()
     {
-        if (!($entity = $this->container->get('jahhub_fertilizer.handler.state')->get($id))) {
-            throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
-        }
-
-        return $entity;
+        return $this->container->get('jahhub_fertilizer.handler.state');
     }
 }
