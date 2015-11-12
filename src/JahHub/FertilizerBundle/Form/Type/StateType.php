@@ -5,9 +5,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ItemType
+ * Class StateType
  */
-class ItemType extends AbstractType
+class StateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -26,7 +26,7 @@ class ItemType extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefault('data_class', 'JahHub\FertilizerBundle\Entity\Item');
+        $resolver->setDefault('data_class', 'JahHub\FertilizerBundle\Entity\State');
     }
 
 
@@ -35,6 +35,6 @@ class ItemType extends AbstractType
      */
     public function getName()
     {
-        return 'fertilizer_item';
+        return 'fertilizer_state';
     }
 }

@@ -3,3 +3,8 @@ jahhub_fertilizer_item:
     prefix: /items
     resource: "JahHub\FertilizerBundle\Controller\ItemController"
     name_prefix:  api_1_item_ # naming collision
+jahhub_fertilizer_state:
+    type: rest
+    prefix: /states
+    resource: "JahHub\FertilizerBundle\Controller\StateController"
+    name_prefix:  api_1_state_ # naming collision

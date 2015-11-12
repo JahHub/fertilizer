@@ -4,26 +4,27 @@ namespace JahHub\FertilizerBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use JahHub\FertilizerBundle\Entity\Item;
+use FOS\RestBundle\View\View;
+use JahHub\FertilizerBundle\Entity\State;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Class ItemController
+ * Class StateController
  */
-class ItemController extends AbstractController
+class StateController extends AbstractController
 {
     /**
-     * List Items by {page} and {limit}
+     * List States by {page} and {limit}
      *
      * @ApiDoc(
      *   resource = true,
-     *   description = "List all items.",
-     *   output = "array<JahHub\FertilizerBundle\Entity\Item>",
+     *   description = "List all states.",
+     *   output = "array<JahHub\FertilizerBundle\Entity\State>",
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "Item"
+     *   section = "State"
      * )
      *
      * @QueryParam(
@@ -31,20 +32,20 @@ class ItemController extends AbstractController
      *  requirements="\d+",
      *  nullable=true,
      *  default="1",
-     *  description="Page from which to start listing items."
+     *  description="Page from which to start listing states."
      * )
      * @QueryParam(
      *  name="limit",
      *  requirements="{5-20}",
      *  default="5",
-     *  description="How many items to return."
+     *  description="How many states to return."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")
      *
      * @param ParamFetcherInterface $paramFetcher param fetcher service
      *
-     * @return Item[]
+     * @return State[]
      */
     public function listAction(ParamFetcherInterface $paramFetcher)
     {
@@ -52,25 +53,25 @@ class ItemController extends AbstractController
     }
 
     /**
-     * Get an Item for a given id
+     * Get a State for a given id
      *
      * @ApiDoc(
      *   resource = true,
-     *   output = "JahHub\FertilizerBundle\Entity\Item",
+     *   output = "JahHub\FertilizerBundle\Entity\State",
      *   statusCodes = {
      *     200 = "Returned when successful",
-     *     404 = "Returned when item is not found"
+     *     404 = "Returned when state is not found"
      *   },
-     *   section = "Item"
+     *   section = "State"
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id item id
+     * @param int $id state id
      *
-     * @return Item
+     * @return State
      *
-     * @throws NotFoundHttpException when item not exist
+     * @throws NotFoundHttpException when state not exist
      */
     public function getAction($id)
     {
@@ -78,23 +79,24 @@ class ItemController extends AbstractController
     }
 
     /**
-     * Delete an item
+     * Delete a state
+     *
      * @ApiDoc(
      *   resource = true,
      *   statusCodes = {
      *     200 = "Returned when successful",
-     *     404 = "Returned when item is not found"
+     *     404 = "Returned when state is not found"
      *   },
-     *   section = "Item"
+     *   section = "State"
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @param int $id item id
+     * @param int $id state id
      *
-     * @return Item
+     * @return View
      *
-     * @throws NotFoundHttpException when item not exist
+     * @throws NotFoundHttpException when state not exist
      */
     public function deleteAction($id)
     {
@@ -102,41 +104,40 @@ class ItemController extends AbstractController
     }
 
     /**
-     * Creates a new item from the submitted data.
-     *
+     * Creates a new state from the submitted data.
      * @ApiDoc(
      *   resource = true,
-     *   description = "Creates a new item",
-     *   input = "JahHub\FertilizerBundle\Entity\Item",
+     *   description = "Creates a new state",
+     *   input = "JahHub\FertilizerBundle\Entity\State",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Item"
+     *   section = "State"
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
      *
-     * @return array|\FOS\RestBundle\View\View
+     * @return array|View
      */
     public function postAction()
     {
-        return $this->handlePost('api_1_item_get');
+        return $this->handlePost('api_1_state_get');
     }
 
     /**
-     * Update existing item from the submitted data or create a new item
+     * Update existing state from the submitted data or create a new state
      *
      * @ApiDoc(
-     *   description = "Update existing or create a new item",
+     *   description = "Update existing or create a new state",
      *   resource = true,
-     *   input = "JahHub\FertilizerBundle\Entity\Item",
+     *   input = "JahHub\FertilizerBundle\Entity\State",
      *   statusCodes = {
-     *     201 = "Returned when Item is created",
+     *     201 = "Returned when State is created",
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Item"
+     *   section = "State"
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -147,7 +148,7 @@ class ItemController extends AbstractController
      */
     public function putAction($id)
     {
-        return $this->handlePut('api_1_item_get', $id);
+        return $this->handlePut('api_1_state_get', $id);
     }
 
     /**
@@ -155,6 +156,6 @@ class ItemController extends AbstractController
      */
     protected function getHandler()
     {
-        return $this->container->get('jahhub_fertilizer.handler.item');
+        return $this->container->get('jahhub_fertilizer.handler.state');
     }
 }

@@ -1,0 +1,19 @@
+JahHub\FertilizerBundle\Entity\State:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      access_type: public_method
+      type: integer
+      read_only: true
+    name:
+      expose: true
+      access_type: public_method
+      type: string
+#    weekList:
+#       expose: true
+#       access_type: public_method
+#       type: array<integer>
+#       accessor:
+#           getter: getWeekIdList
