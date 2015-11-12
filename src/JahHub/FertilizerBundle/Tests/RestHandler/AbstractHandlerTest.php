@@ -16,6 +16,9 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
     /** @var AbstractHandler */
     protected $handler;
 
+    /** @var string */
+    protected $formTypeName;
+
     /** @var ObjectManager|ObjectProphecy */
     protected $fertilizerObjectManager;
 
@@ -57,7 +60,6 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessFormOk()
     {
-        $formName = 'test_type';
         $method = 'POST';
         $parameters = array();
         /** @var FormInterface|ObjectProphecy $form */
@@ -67,11 +69,11 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
         /** @var EntityInterface|ObjectProphecy $entity */
         $entity = $this->prophesize('JahHub\FertilizerBundle\Entity\EntityInterface');
 
-        $this->prophesizeProcessFormOk($formName, $entity, $method, $form, $parameters, $submittedEntity);
+        $this->prophesizeProcessFormOk($entity, $method, $form, $parameters, $submittedEntity);
 
         $this->assertSame(
             $submittedEntity->reveal(),
-            $this->handler->processForm($formName, $entity->reveal(), $parameters, $method)
+            $this->handler->processForm($entity->reveal(), $parameters, $method)
         );
     }
 
@@ -79,7 +81,6 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessFormKo()
     {
-        $formName = 'test_type';
         $method = 'POST';
         $parameters = array();
         /** @var FormInterface|ObjectProphecy $form */
@@ -87,18 +88,17 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
         /** @var EntityInterface|ObjectProphecy $entity */
         $entity = $this->prophesize('JahHub\FertilizerBundle\Entity\EntityInterface');
 
-        $this->prophesizeProcessFormKo($formName, $entity, $method, $form, $parameters);
+        $this->prophesizeProcessFormKo($entity, $method, $form, $parameters);
 
         $this->setExpectedException(
             'JahHub\FertilizerBundle\Exception\InvalidFormException',
             'Invalid submitted data'
         );
 
-        $this->handler->processForm($formName, $entity->reveal(), $parameters, $method);
+        $this->handler->processForm($entity->reveal(), $parameters, $method);
     }
 
     /**
-     * @param string         $formName
      * @param ObjectProphecy $entity
      * @param string         $method
      * @param ObjectProphecy $form
@@ -106,14 +106,13 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
      * @param ObjectProphecy $submittedEntity
      */
     protected function prophesizeProcessFormOk(
-        $formName,
         ObjectProphecy $entity,
         $method,
         ObjectProphecy $form,
         array $parameters,
         ObjectProphecy $submittedEntity
     ) {
-        $this->prophesizeProcessFormFirstPart($formName, $entity, $method, $form, $parameters);
+        $this->prophesizeProcessFormFirstPart($this->formTypeName, $entity, $method, $form, $parameters);
         $form->isValid()
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
@@ -125,40 +124,38 @@ abstract class AbstractHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string         $formName
      * @param ObjectProphecy $entity
      * @param string         $method
      * @param ObjectProphecy $form
      * @param array          $parameters
      */
     protected function prophesizeProcessFormKo(
-        $formName,
         ObjectProphecy $entity,
         $method,
         ObjectProphecy $form,
         array $parameters
     ) {
-        $this->prophesizeProcessFormFirstPart($formName, $entity, $method, $form, $parameters);
+        $this->prophesizeProcessFormFirstPart($this->formTypeName, $entity, $method, $form, $parameters);
         $form->isValid()
             ->willReturn(false)
             ->shouldBeCalledTimes(1);
     }
 
     /**
-     * @param string         $formName
+     * @param string         $formTypeName
      * @param ObjectProphecy $entity
      * @param string         $method
      * @param ObjectProphecy $form
      * @param array          $parameters
      */
     protected function prophesizeProcessFormFirstPart(
-        $formName,
+        $formTypeName,
         ObjectProphecy $entity,
         $method,
         ObjectProphecy $form,
         array $parameters
     ) {
-        $this->formFactory->create($formName, $entity->reveal(), array('method' => $method))
+        $this->formFactory->create($formTypeName, $entity->reveal(), array('method' => $method))
             ->willReturn($form->reveal())
             ->shouldBeCalledTimes(1);
         $form->submit($parameters, 'PATCH' !== $method)

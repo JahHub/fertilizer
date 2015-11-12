@@ -2,17 +2,17 @@
 namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
-use JahHub\FertilizerBundle\RestHandler\ItemHandler;
+use JahHub\FertilizerBundle\RestHandler\StateHandler;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Class ItemHandlerTest
+ * Class StateHandlerTest
  */
-class ItemHandlerTest extends AbstractHandlerTest
+class StateHandlerTest extends AbstractHandlerTest
 {
 
-    /** @var ItemHandler */
+    /** @var StateHandler */
     protected $handler;
 
     /**
@@ -22,8 +22,8 @@ class ItemHandlerTest extends AbstractHandlerTest
     {
         parent::setUp();
 
-        $this->formTypeName = 'fertilizer_item';
-        $this->handler = new ItemHandler(
+        $this->formTypeName = 'fertilizer_state';
+        $this->handler = new StateHandler(
             $this->fertilizerObjectManager->reveal(),
             $this->formFactory->reveal(),
             $this->formTypeName
