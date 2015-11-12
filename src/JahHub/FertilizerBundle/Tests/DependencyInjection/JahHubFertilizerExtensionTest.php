@@ -18,6 +18,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
+            'state',
         );
         $interface = 'JahHub\FertilizerBundle\Entity\EntityInterface';
 
@@ -34,7 +35,8 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                     class_implements($this->container->getParameter($classParameterKey))
                 ),
                 sprintf(
-                    'Should implements "%s"',
+                    '%s class should implements "%s"',
+                    $entityName,
                     $interface
                 )
             );
@@ -49,6 +51,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
+            'state',
         );
         $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
@@ -75,7 +78,8 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                     class_implements($this->container->getParameter($classParameterKey))
                 ),
                 sprintf(
-                    'Should implements "%s"',
+                    '%s repository should implements "%s"',
+                    $entityName,
                     $interface
                 )
             );
@@ -117,7 +121,8 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                     class_implements($this->container->getParameter($classParameterKey))
                 ),
                 sprintf(
-                    'Should implements "%s"',
+                    '%s handler should implements "%s"',
+                    $entityName,
                     $interface
                 )
             );
@@ -154,7 +159,8 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                     class_parents($this->container->getParameter($classParameterKey))
                 ) || $parentClass == $this->container->getParameter($classParameterKey),
                 sprintf(
-                    'Should extend "%s"',
+                    '%s manager should extend "%s"',
+                    $entityName,
                     $parentClass
                 )
             );
@@ -169,17 +175,22 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
+            'state',
         );
         $parentClass = 'JahHub\FertilizerBundle\Form\Type\AbstractType';
 
         foreach ($entityNameList as $entityName) {
             $serviceId = sprintf(
-                'jahhub_fertilizer.type.%s',
+                'jahhub_fertilizer.form.type.%s',
                 $entityName
             );
             $classParameterKey = sprintf(
                 '%s.class',
                 $serviceId
+            );
+            $formTypeAlias= sprintf(
+                'fertilizer_%s',
+                $entityName
             );
 
             $this->assertContainerBuilderHasParameter($classParameterKey);
@@ -189,13 +200,22 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                 $this->container->getParameter($classParameterKey)
             );
 
+            $this->assertContainerBuilderHasServiceDefinitionWithTag(
+                $serviceId,
+                'form.type',
+                array(
+                    'alias' => $formTypeAlias
+                )
+            );
+
             $this->assertTrue(
                 in_array(
                     $parentClass,
                     class_parents($this->container->getParameter($classParameterKey))
                 ) || $parentClass == $this->container->getParameter($classParameterKey),
                 sprintf(
-                    'Should extend "%s"',
+                    '%s form type should extend "%s"',
+                    $entityName,
                     $parentClass
                 )
             );

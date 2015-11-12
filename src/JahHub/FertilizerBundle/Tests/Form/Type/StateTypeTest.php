@@ -1,18 +1,18 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Form\Type;
 
-use JahHub\FertilizerBundle\Form\Type\ItemType;
+use JahHub\FertilizerBundle\Form\Type\StateType;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ItemTypeTest
+ * Class StateTypeTest
  */
-class ItemTypeTest extends AbstractTypeTest
+class StateTypeTest extends AbstractTypeTest
 {
 
-    /** @var ItemType */
+    /** @var StateType */
     protected $type;
 
     /**
@@ -22,7 +22,7 @@ class ItemTypeTest extends AbstractTypeTest
     {
         parent::setUp();
 
-        $this->setType(new ItemType());
+        $this->setType(new StateType());
     }
 
     /**
@@ -30,7 +30,7 @@ class ItemTypeTest extends AbstractTypeTest
     public function testGetName()
     {
         $this->assertSame(
-            'fertilizer_item',
+            'fertilizer_state',
             $this->getType()->getName()
         );
     }
@@ -43,7 +43,7 @@ class ItemTypeTest extends AbstractTypeTest
         $optionResolver = $this->prophesize('Symfony\Component\OptionsResolver\OptionsResolver');
 
         $this->prophesizeDefault($optionResolver);
-        $optionResolver->setDefault('data_class', 'JahHub\FertilizerBundle\Entity\Item')
+        $optionResolver->setDefault('data_class', 'JahHub\FertilizerBundle\Entity\State')
             ->shouldBeCalledTimes(1);
 
         $this->getType()->configureOptions($optionResolver->reveal());
