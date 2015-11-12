@@ -3,12 +3,8 @@ namespace JahHub\FertilizerBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\Route;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use JahHub\FertilizerBundle\Entity\Item;
-use JahHub\FertilizerBundle\Exception\InvalidFormException;
-use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -35,13 +31,13 @@ class ItemController extends AbstractController
      *  requirements="\d+",
      *  nullable=true,
      *  default="1",
-     *  description="Page from which to start listing states."
+     *  description="Page from which to start listing items."
      * )
      * @QueryParam(
      *  name="limit",
      *  requirements="{5-20}",
      *  default="5",
-     *  description="How many states to return."
+     *  description="How many items to return."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")

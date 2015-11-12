@@ -3,13 +3,9 @@ namespace JahHub\FertilizerBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\Route;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use JahHub\FertilizerBundle\Entity\State;
-use JahHub\FertilizerBundle\Exception\InvalidFormException;
-use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
