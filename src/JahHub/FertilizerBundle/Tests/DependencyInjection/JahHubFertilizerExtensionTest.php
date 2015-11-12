@@ -94,6 +94,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
+            'state'
         );
 
         $interface = 'JahHub\FertilizerBundle\RestHandler\RESTHandlerInterface';
@@ -137,6 +138,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
+            'state'
         );
 
         $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
