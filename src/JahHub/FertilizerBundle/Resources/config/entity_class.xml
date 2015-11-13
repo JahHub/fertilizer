@@ -7,5 +7,6 @@
     <parameters>
         <parameter key="jahhub_fertilizer.entity.item.class">JahHub\FertilizerBundle\Entity\Item</parameter>
         <parameter key="jahhub_fertilizer.entity.state.class">JahHub\FertilizerBundle\Entity\State</parameter>
+        <parameter key="jahhub_fertilizer.entity.week.class">JahHub\FertilizerBundle\Entity\Week</parameter>
     </parameters>
 </container>
