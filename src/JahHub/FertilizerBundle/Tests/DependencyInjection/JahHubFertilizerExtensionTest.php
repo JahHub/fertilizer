@@ -19,6 +19,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
             'state',
+            'week',
         );
         $interface = 'JahHub\FertilizerBundle\Entity\EntityInterface';
 
@@ -52,6 +53,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
             'state',
+            'week',
         );
         $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
@@ -94,7 +96,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
-            'state'
+            'state',
         );
 
         $interface = 'JahHub\FertilizerBundle\RestHandler\RESTHandlerInterface';
@@ -138,7 +140,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
         $entityNameList = array(
             'item',
-            'state'
+            'state',
         );
 
         $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
@@ -206,7 +208,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                 $serviceId,
                 'form.type',
                 array(
-                    'alias' => $formTypeAlias
+                    'alias' => $formTypeAlias,
                 )
             );
 
