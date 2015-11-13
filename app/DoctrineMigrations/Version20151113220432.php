@@ -19,14 +19,13 @@ class Version20151113220432 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('
-            CREATE TABLE
-              week
-            (
-              id INT AUTO_INCREMENT NOT NULL,
-              PRIMARY KEY(id)
-            )
-            DEFAULT CHARACTER SET utf8
-            COLLATE utf8_unicode_ci ENGINE = InnoDB
+            CREATE TABLE week
+                (
+                  id INT AUTO_INCREMENT NOT NULL,
+                  PRIMARY KEY(id)
+                )
+                DEFAULT CHARACTER SET utf8
+                COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
     }
 
