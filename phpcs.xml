@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="Fertilizer">
+    <file>src/</file>
+
+    <exclude-pattern>*/Tests/*</exclude-pattern>
+
+    <arg name="report" value="full"/>
+    <arg name="extensions" value="php"/>
+    <arg value="np"/>
+    <arg name="colors"/>
+
+    <rule ref="PSR2"/>
+</ruleset>
