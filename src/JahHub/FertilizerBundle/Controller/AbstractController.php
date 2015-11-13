@@ -21,7 +21,7 @@ abstract class AbstractController extends FOSRestController
      *
      * @throws NotFoundHttpException when entity not exist
      */
-    public function handleDelete($id)
+    protected function handleDelete($id)
     {
         $handler = $this->getHandler();
         if (!($handler->exist($id))) {
