@@ -10,14 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class WeekType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-    }
-
-    /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
