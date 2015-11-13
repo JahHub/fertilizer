@@ -5,7 +5,6 @@ use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use JahHub\FertilizerBundle\Manager\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * Class AbstractHandler
