@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="jahhub_fertilizer.handler.item.class">JahHub\FertilizerBundle\RestHandler\ItemHandler</parameter>
         <parameter key="jahhub_fertilizer.handler.state.class">JahHub\FertilizerBundle\RestHandler\StateHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.week.class">JahHub\FertilizerBundle\RestHandler\WeekHandler</parameter>
     </parameters>
     <services>
         <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">
@@ -18,6 +19,11 @@
             <argument type="service" id="jahhub_fertilizer.manager.state"/>
             <argument type="service" id="form.factory"/>
             <argument>fertilizer_state</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.week" class="%jahhub_fertilizer.handler.week.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.week"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_week</argument>
         </service>
     </services>
 </container>
