@@ -6,6 +6,5 @@ namespace JahHub\FertilizerBundle\Tests\RestHandler;
  */
 class ItemHandlerTest extends AbstractEntityHandlerTest
 {
-
     protected $formTypeName = 'fertilizer_item';
 }

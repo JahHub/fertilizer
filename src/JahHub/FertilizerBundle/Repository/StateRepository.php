@@ -4,6 +4,6 @@ namespace JahHub\FertilizerBundle\Repository;
 /**
  * Class StateRepository
  */
-class StateRepository extends AbstractRepository
+class StateRepository extends EntityRepository
 {
 }

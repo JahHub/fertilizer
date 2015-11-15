@@ -4,6 +4,6 @@ namespace JahHub\FertilizerBundle\Repository;
 /**
  * Class ItemQuantityRepository
  */
-class ItemQuantityRepository extends AbstractRepository
+class ItemQuantityRepository extends EntityRepository
 {
 }
