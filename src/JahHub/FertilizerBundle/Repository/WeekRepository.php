@@ -4,6 +4,6 @@ namespace JahHub\FertilizerBundle\Repository;
 /**
  * Class WeekRepository
  */
-class WeekRepository extends AbstractRepository
+class WeekRepository extends EntityRepository
 {
 }

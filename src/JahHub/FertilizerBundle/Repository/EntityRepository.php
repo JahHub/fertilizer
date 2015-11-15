@@ -1,12 +1,12 @@
 <?php
 namespace JahHub\FertilizerBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 
 /**
- * Class AbstractRepository
+ * Class EntityRepository
  */
-abstract class AbstractRepository extends EntityRepository implements EntityRepositoryInterface
+class EntityRepository extends BaseEntityRepository implements EntityRepositoryInterface
 {
     /**
      * {@inheritdoc}
