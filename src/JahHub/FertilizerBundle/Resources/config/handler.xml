@@ -5,10 +5,10 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="jahhub_fertilizer.handler.item.class">JahHub\FertilizerBundle\RestHandler\ItemHandler</parameter>
-        <parameter key="jahhub_fertilizer.handler.state.class">JahHub\FertilizerBundle\RestHandler\StateHandler</parameter>
-        <parameter key="jahhub_fertilizer.handler.week.class">JahHub\FertilizerBundle\RestHandler\WeekHandler</parameter>
-        <parameter key="jahhub_fertilizer.handler.item_quantity.class">JahHub\FertilizerBundle\RestHandler\ItemQuantityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.item.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.state.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.week.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.item_quantity.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
     </parameters>
     <services>
         <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">

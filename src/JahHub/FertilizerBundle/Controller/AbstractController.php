@@ -6,7 +6,7 @@ use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
-use JahHub\FertilizerBundle\RestHandler\AbstractHandler;
+use JahHub\FertilizerBundle\Handler\EntityHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -111,7 +111,7 @@ abstract class AbstractController extends FOSRestController
     }
 
     /**
-     * @return AbstractHandler
+     * @return EntityHandler
      */
     abstract protected function getHandler();
 }

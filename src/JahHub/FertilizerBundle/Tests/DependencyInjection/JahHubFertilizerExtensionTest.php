@@ -144,7 +144,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'item_quantity',
         );
 
-        $interface = 'JahHub\FertilizerBundle\RestHandler\RESTHandlerInterface';
+        $interface = 'JahHub\FertilizerBundle\Handler\RESTHandlerInterface';
 
         foreach ($entityNameList as $entityName) {
             $serviceId = sprintf(
