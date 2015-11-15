@@ -313,6 +313,9 @@ class ItemControllerTest extends AbstractControllerTest
         );
     }
 
+    /**
+     * @return array
+     */
     public function getTestJsonDeleteActionData()
     {
         return array(

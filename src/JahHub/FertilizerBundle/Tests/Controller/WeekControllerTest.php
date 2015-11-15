@@ -4,21 +4,21 @@ namespace JahHub\FertilizerBundle\Tests\Controller;
 use FOS\RestBundle\Util\Codes;
 
 /**
- * Class StateControllerTest
+ * Class WeekControllerTest
  */
-class StateControllerTest extends AbstractControllerTest
+class WeekControllerTest extends AbstractControllerTest
 {
     /**
      */
     public function testJsonListAction()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
         $param = array(
             'page' => 1,
             'limit' => 2, //should be overrided to 5
         );
-        $route =  $this->getUrl('api_1_state_list', $param);
+        $route =  $this->getUrl('api_1_week_list', $param);
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
@@ -29,30 +29,25 @@ class StateControllerTest extends AbstractControllerTest
         $expected = array(
             array(
                 'id' => 1,
-                'name' => 'name_1',
             ),
             array(
                 'id' => 2,
-                'name' => 'name_2',
             ),
             array(
                 'id' => 3,
-                'name' => 'name_3',
             ),
             array(
                 'id' => 4,
-                'name' => 'name_4',
             ),
             array(
                 'id' => 5,
-                'name' => 'name_5',
             ),
         );
 
         $this->assertSame(
             $expected,
             $decoded,
-            'Should contains the 5 first states'
+            'Should contains the 5 first weeks'
         );
     }
 
@@ -60,12 +55,12 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonListActionPage2()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
         $param = array(
             'page' => 2,
         );
-        $route =  $this->getUrl('api_1_state_list', $param);
+        $route =  $this->getUrl('api_1_week_list', $param);
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
@@ -76,29 +71,24 @@ class StateControllerTest extends AbstractControllerTest
         $expected = array(
             array(
                 'id' => 6,
-                'name' => 'name_6',
             ),
             array(
                 'id' => 7,
-                'name' => 'name_7',
             ),
             array(
                 'id' => 8,
-                'name' => 'name_8',
             ),
             array(
                 'id' => 9,
-                'name' => 'name_9',
             ),
             array(
                 'id' => 10,
-                'name' => 'name_10',
             ),
         );
         $this->assertSame(
             $expected,
             $decoded,
-            'Should contains the five states'
+            'Should contains the five weeks'
         );
 
         $this->assertSame(
@@ -111,34 +101,33 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonGetAction()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_state_get', array('id' => 1));
+        $route =  $this->getUrl('api_1_week_get', array('id' => 1));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
         $this->assertTrue(isset($decoded['id']));
-        $this->assertTrue(isset($decoded['name']));
     }
 
     /**
      */
     public function testJsonHead()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_state_get', array('id' => 1));
+        $route =  $this->getUrl('api_1_week_get', array('id' => 1));
         $response = $this->doHeadRequest($route);
         $this->assertStatusCode($response, Codes::HTTP_OK);
     }
 
     /**
      */
-    public function testJsonHeadWithUnknownState()
+    public function testJsonHeadWithUnknownWeek()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_state_get', array('id' => self::UNKNOWN_ID));
+        $route =  $this->getUrl('api_1_week_get', array('id' => self::UNKNOWN_ID));
         $response = $this->doHeadRequest($route);
         $this->assertStatusCode($response, Codes::HTTP_NOT_FOUND);
     }
@@ -147,7 +136,7 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonGetActionWithUnknownId()
     {
-        $route =  $this->getUrl('api_1_state_get', array('id' => self::UNKNOWN_ID));
+        $route =  $this->getUrl('api_1_week_get', array('id' => self::UNKNOWN_ID));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_NOT_FOUND);
     }
@@ -156,10 +145,8 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonPostAction()
     {
-        $route =  $this->getUrl('api_1_state_post');
-        $param = array(
-            'name' => 'name_1',
-        );
+        $route =  $this->getUrl('api_1_week_post');
+        $param = array();
         $jsonParam = json_encode($param);
         $response = $this->doPostRequest($route, $jsonParam);
         $this->assertSame(
@@ -170,45 +157,12 @@ class StateControllerTest extends AbstractControllerTest
         $this->assertTrue($response->isRedirect());
     }
 
-    /**
-     * @dataProvider getTestJsonPostActionWithBadNameData
-     * @param string $name
-     */
-    public function testJsonPostActionWithBadName($name)
-    {
-        $route =  $this->getUrl('api_1_state_post');
-        $param = array(
-            'name' => $name,
-        );
-        $jsonParam = json_encode($param);
-        $response = $this->doPostRequest($route, $jsonParam);
-        $this->assertJsonResponse($response, Codes::HTTP_BAD_REQUEST);
-        $this->assertContains('NOT_NULL', $response->getContent());
-        $expected = array(
-            'code' => 400,
-            'message' => 'Validation Failed',
-            'errors' => array(
-                'children' => array(
-                    'name' => array(
-                        'errors' => array(
-                            'NOT_BLANK',
-                            'NOT_NULL',
-                        ),
-                    ),
-                ),
-            ),
-        );
-        $this->assertSame(
-            $expected,
-            json_decode($response->getContent(), true)
-        );
-    }
 
     /**
      */
     public function testJsonPostActionWithBadParameters()
     {
-        $route =  $this->getUrl('api_1_state_post');
+        $route =  $this->getUrl('api_1_week_post');
         $param = '{"plip":"plop"}';
         $response = $this->doPostRequest($route, $param);
         $this->assertJsonResponse($response, Codes::HTTP_BAD_REQUEST);
@@ -223,26 +177,24 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonPutAction($id, $httpCode, $assertFullRedirection)
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
 
-        $route = $this->getUrl('api_1_state_put', array('id' => $id));
-        $param = array(
-            'name' => 'custom_name',
-        );
+        $route = $this->getUrl('api_1_week_put', array('id' => $id));
+        $param = array();
         $jsonParam = json_encode($param);
 
         $response = $this->doPutRequest($route, $jsonParam);
 
         $this->assertStatusCode($response, $httpCode);
         if ($assertFullRedirection) {
-            $url = $this->getUrl('api_1_state_put', array('id' => $id), true);
+            $url = $this->getUrl('api_1_week_put', array('id' => $id), true);
             $this->assertIsRedirectionTo($response, $url);
         } else {
             $url = str_replace(
                 'ITEM_ID',
                 '',
-                $this->getUrl('api_1_state_get', array('id' => 'ITEM_ID'), true)
+                $this->getUrl('api_1_week_get', array('id' => 'ITEM_ID'), true)
             );
             $this->assertIsRedirectionToPartialUrl($response, $url);
         }
@@ -252,10 +204,10 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonPutActionWithBadParameters()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
 
-        $route = $this->getUrl('api_1_state_put', array('id' => 1));
+        $route = $this->getUrl('api_1_week_put', array('id' => 1));
         $param = array(
             'plip' => 'plop',
         );
@@ -274,10 +226,10 @@ class StateControllerTest extends AbstractControllerTest
      */
     public function testJsonDeleteAction($id, $httpCode)
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData');
+        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
         $this->loadFixtures($fixtures);
 
-        $route = $this->getUrl('api_1_state_delete', array('id' => $id));
+        $route = $this->getUrl('api_1_week_delete', array('id' => $id));
         $response = $this->doDeleteRequest($route);
 
         $this->assertStatusCode($response, $httpCode);
@@ -286,26 +238,15 @@ class StateControllerTest extends AbstractControllerTest
     /**
      * @return array
      */
-    public function getTestJsonPostActionWithBadNameData()
-    {
-        return array(
-            'null' => array(null),
-            'empty' => array(''),
-        );
-    }
-
-    /**
-     * @return array
-     */
     public function getTestJsonPutActionData()
     {
         return array(
-            'Should modify state' => array(
+            'Should modify week' => array(
                 1,
                 Codes::HTTP_NO_CONTENT,
                 true,
             ),
-            'Should create state' => array(
+            'Should create week' => array(
                 self::UNKNOWN_ID,
                 Codes::HTTP_CREATED,
                 false,
@@ -319,11 +260,11 @@ class StateControllerTest extends AbstractControllerTest
     public function getTestJsonDeleteActionData()
     {
         return array(
-            'Delete existing state' => array(
+            'Delete existing week' => array(
                 1,
                 Codes::HTTP_OK,
             ),
-            'Delete not existing state' => array(
+            'Delete not existing week' => array(
                 self::UNKNOWN_ID,
                 Codes::HTTP_NOT_FOUND,
             ),

@@ -30,9 +30,14 @@ class WeekRepositoryTest extends AbstractRepositoryTest
      */
     public function testRepositoryClass()
     {
+        $class = 'JahHub\FertilizerBundle\Repository\WeekRepository';
         $this->assertInstanceOf(
-            'JahHub\FertilizerBundle\Repository\WeekRepository',
-            $this->repository
+            $class,
+            $this->repository,
+            sprintf(
+                'Repository class must be %s',
+                $class
+            )
         );
     }
 
