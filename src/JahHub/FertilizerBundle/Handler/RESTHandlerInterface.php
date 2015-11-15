@@ -1,5 +1,5 @@
 <?php
-namespace JahHub\FertilizerBundle\RestHandler;
+namespace JahHub\FertilizerBundle\Handler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 

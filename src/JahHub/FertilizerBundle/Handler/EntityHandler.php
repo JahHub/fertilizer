@@ -1,5 +1,5 @@
 <?php
-namespace JahHub\FertilizerBundle\RestHandler;
+namespace JahHub\FertilizerBundle\Handler;
 
 use JahHub\FertilizerBundle\Entity\EntityInterface;
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
@@ -7,9 +7,9 @@ use JahHub\FertilizerBundle\Manager\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
- * Class AbstractHandler
+ * Class EntityHandler
  */
-abstract class AbstractHandler implements RESTHandlerInterface
+class EntityHandler implements RESTHandlerInterface
 {
     /** @var ObjectManager */
     private $fertilizerObjectManager;

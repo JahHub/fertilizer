@@ -1,5 +1,5 @@
 <?php
-namespace JahHub\FertilizerBundle\Tests\RestHandler;
+namespace JahHub\FertilizerBundle\Tests\Handler;
 
 use JahHub\FertilizerBundle\Exception\InvalidFormException;
 use Prophecy\Prophecy\ObjectProphecy;
