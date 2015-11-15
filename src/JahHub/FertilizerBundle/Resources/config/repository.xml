@@ -6,6 +6,7 @@
     <parameters>
         <parameter key="jahhub_fertilizer.repository.item.class">JahHub\FertilizerBundle\Repository\ItemRepository</parameter>
         <parameter key="jahhub_fertilizer.repository.state.class">JahHub\FertilizerBundle\Repository\StateRepository</parameter>
+        <parameter key="jahhub_fertilizer.repository.week.class">JahHub\FertilizerBundle\Repository\WeekRepository</parameter>
     </parameters>
     <services>
         <service id="jahhub_fertilizer.repository.item" class="%jahhub_fertilizer.repository.item.class%">
@@ -15,6 +16,10 @@
         <service id="jahhub_fertilizer.repository.state" class="%jahhub_fertilizer.repository.state.class%">
             <factory service="doctrine.orm.entity_manager" method="getRepository" />
             <argument>%jahhub_fertilizer.entity.state.class%</argument>
+        </service>
+        <service id="jahhub_fertilizer.repository.week" class="%jahhub_fertilizer.repository.week.class%">
+            <factory service="doctrine.orm.entity_manager" method="getRepository" />
+            <argument>%jahhub_fertilizer.entity.week.class%</argument>
         </service>
     </services>
 </container>

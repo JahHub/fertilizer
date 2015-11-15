@@ -8,3 +8,8 @@ jahhub_fertilizer_state:
     prefix: /states
     resource: "JahHub\FertilizerBundle\Controller\StateController"
     name_prefix:  api_1_state_ # naming collision
+jahhub_fertilizer_week:
+    type: rest
+    prefix: /weeks
+    resource: "JahHub\FertilizerBundle\Controller\WeekController"
+    name_prefix:  api_1_week_ # naming collision

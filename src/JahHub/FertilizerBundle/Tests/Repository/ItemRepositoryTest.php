@@ -28,6 +28,21 @@ class ItemRepositoryTest extends AbstractRepositoryTest
 
     /**
      */
+    public function testRepositoryClass()
+    {
+        $class = 'JahHub\FertilizerBundle\Repository\ItemRepository';
+        $this->assertInstanceOf(
+            $class,
+            $this->repository,
+            sprintf(
+                'Repository class must be %s',
+                $class
+            )
+        );
+    }
+
+    /**
+     */
     public function testCreate()
     {
         $entity = $this->repository->create();

@@ -4,7 +4,7 @@ namespace JahHub\FertilizerBundle\Entity;
 /**
  * Class Week
  */
-class Week
+class Week implements EntityInterface
 {
     /** @var int */
     private $id;

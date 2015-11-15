@@ -4,7 +4,6 @@ namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Id\AssignedGenerator;
-use JahHub\FertilizerBundle\Entity\State;
 
 /**
  * Class AbstractLoadEntityData

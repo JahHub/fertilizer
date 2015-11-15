@@ -19,6 +19,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
             'state',
+            'week',
         );
         $interface = 'JahHub\FertilizerBundle\Entity\EntityInterface';
 
@@ -52,6 +53,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
             'state',
+            'week',
         );
         $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
@@ -88,13 +90,54 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
     /**
      */
+    public function testManagerConfiguration()
+    {
+        $this->load();
+
+        $entityNameList = array(
+            'item',
+            'state',
+            'week',
+        );
+
+        $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
+        $classParameterKey = 'jahhub_fertilizer.manager.object.class';
+
+        foreach ($entityNameList as $entityName) {
+            $serviceId = sprintf(
+                'jahhub_fertilizer.manager.%s',
+                $entityName
+            );
+
+            $this->assertContainerBuilderHasService(
+                $serviceId,
+                $this->container->getParameter($classParameterKey)
+            );
+
+            $this->assertTrue(
+                in_array(
+                    $parentClass,
+                    class_parents($this->container->getParameter($classParameterKey))
+                ) || $parentClass == $this->container->getParameter($classParameterKey),
+                sprintf(
+                    '%s manager should extend "%s"',
+                    $entityName,
+                    $parentClass
+                )
+            );
+        }
+    }
+
+    /**
+     */
     public function testHandlerConfiguration()
     {
         $this->load();
 
         $entityNameList = array(
             'item',
-            'state'
+            'state',
+            'week',
         );
 
         $interface = 'JahHub\FertilizerBundle\RestHandler\RESTHandlerInterface';
@@ -132,45 +175,6 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
 
     /**
      */
-    public function testManagerConfiguration()
-    {
-        $this->load();
-
-        $entityNameList = array(
-            'item',
-            'state'
-        );
-
-        $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
-        $classParameterKey = 'jahhub_fertilizer.manager.object.class';
-
-        foreach ($entityNameList as $entityName) {
-            $serviceId = sprintf(
-                'jahhub_fertilizer.manager.%s',
-                $entityName
-            );
-
-            $this->assertContainerBuilderHasService(
-                $serviceId,
-                $this->container->getParameter($classParameterKey)
-            );
-
-            $this->assertTrue(
-                in_array(
-                    $parentClass,
-                    class_parents($this->container->getParameter($classParameterKey))
-                ) || $parentClass == $this->container->getParameter($classParameterKey),
-                sprintf(
-                    '%s manager should extend "%s"',
-                    $entityName,
-                    $parentClass
-                )
-            );
-        }
-    }
-
-    /**
-     */
     public function testTypeConfiguration()
     {
         $this->load();
@@ -178,6 +182,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
         $entityNameList = array(
             'item',
             'state',
+            'week',
         );
         $parentClass = 'JahHub\FertilizerBundle\Form\Type\AbstractType';
 
@@ -206,7 +211,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
                 $serviceId,
                 'form.type',
                 array(
-                    'alias' => $formTypeAlias
+                    'alias' => $formTypeAlias,
                 )
             );
 

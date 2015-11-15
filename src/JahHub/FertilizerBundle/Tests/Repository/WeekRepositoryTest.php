@@ -1,20 +1,20 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Repository;
 
-use JahHub\FertilizerBundle\Repository\StateRepository;
+use JahHub\FertilizerBundle\Repository\WeekRepository;
 
 /**
- * Class StateRepositoryTest
+ * Class WeekRepositoryTest
  */
-class StateRepositoryTest extends AbstractRepositoryTest
+class WeekRepositoryTest extends AbstractRepositoryTest
 {
     /** @var string */
-    private $entityName = 'JahHubFertilizerBundle:State';
+    private $entityName = 'JahHubFertilizerBundle:Week';
 
     /** @var string */
-    private $entityClassName = 'JahHub\FertilizerBundle\Entity\State';
+    private $entityClassName = 'JahHub\FertilizerBundle\Entity\Week';
 
-    /** @var StateRepository */
+    /** @var WeekRepository */
     private $repository;
 
     /**
@@ -30,7 +30,7 @@ class StateRepositoryTest extends AbstractRepositoryTest
      */
     public function testRepositoryClass()
     {
-        $class = 'JahHub\FertilizerBundle\Repository\StateRepository';
+        $class = 'JahHub\FertilizerBundle\Repository\WeekRepository';
         $this->assertInstanceOf(
             $class,
             $this->repository,
@@ -57,7 +57,7 @@ class StateRepositoryTest extends AbstractRepositoryTest
      */
     public function testExist()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData'));
+        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
 
         $this->assertTrue($this->repository->exist(1));
         $this->assertFalse($this->repository->exist(self::UNKNOWN_ID));
@@ -67,7 +67,7 @@ class StateRepositoryTest extends AbstractRepositoryTest
      */
     public function testDelete()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData'));
+        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
 
         $entityId = 1;
         $this->repository->delete($entityId);
@@ -78,7 +78,7 @@ class StateRepositoryTest extends AbstractRepositoryTest
      */
     public function testAll()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData'));
+        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
 
         $limit = 2;
         $entityList = $this->repository->all(1, $limit);
