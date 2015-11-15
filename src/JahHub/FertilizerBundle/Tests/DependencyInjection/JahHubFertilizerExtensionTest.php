@@ -55,6 +55,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'item',
             'state',
             'week',
+            'item_quantity',
         );
         $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
