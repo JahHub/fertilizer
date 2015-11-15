@@ -13,3 +13,8 @@ jahhub_fertilizer_week:
     prefix: /weeks
     resource: "JahHub\FertilizerBundle\Controller\WeekController"
     name_prefix:  api_1_week_ # naming collision
+jahhub_fertilizer_item_quantity:
+    type: rest
+    prefix: /item_quantities
+    resource: "JahHub\FertilizerBundle\Controller\ItemQuantityController"
+    name_prefix:  api_1_item_quantity_ # naming collision

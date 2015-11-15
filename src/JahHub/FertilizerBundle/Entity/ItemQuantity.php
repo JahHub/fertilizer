@@ -4,7 +4,7 @@ namespace JahHub\FertilizerBundle\Entity;
 /**
  * Class ItemQuantity
  */
-class ItemQuantity
+class ItemQuantity implements EntityInterface
 {
     /** @var int */
     private $id;

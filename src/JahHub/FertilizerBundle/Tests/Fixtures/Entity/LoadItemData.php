@@ -3,8 +3,6 @@ namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use JahHub\FertilizerBundle\Entity\Item;
-use JahHub\FertilizerBundle\Entity\State;
-use JahHub\FertilizerBundle\Entity\Week;
 
 /**
  * Class LoadItemData

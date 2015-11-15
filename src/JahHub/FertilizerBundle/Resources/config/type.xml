@@ -7,6 +7,7 @@
         <parameter key="jahhub_fertilizer.form.type.item.class">JahHub\FertilizerBundle\Form\Type\ItemType</parameter>
         <parameter key="jahhub_fertilizer.form.type.state.class">JahHub\FertilizerBundle\Form\Type\StateType</parameter>
         <parameter key="jahhub_fertilizer.form.type.week.class">JahHub\FertilizerBundle\Form\Type\WeekType</parameter>
+        <parameter key="jahhub_fertilizer.form.type.item_quantity.class">JahHub\FertilizerBundle\Form\Type\ItemQuantityType</parameter>
     </parameters>
 
     <services>
@@ -18,6 +19,9 @@
         </service>
         <service id="jahhub_fertilizer.form.type.week" class="%jahhub_fertilizer.form.type.week.class%">
             <tag name="form.type" alias="fertilizer_week" />
+        </service>
+        <service id="jahhub_fertilizer.form.type.item_quantity" class="%jahhub_fertilizer.form.type.item_quantity.class%">
+            <tag name="form.type" alias="fertilizer_item_quantity" />
         </service>
     </services>
 </container>
