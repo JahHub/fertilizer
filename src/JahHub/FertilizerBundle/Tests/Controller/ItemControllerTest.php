@@ -14,11 +14,12 @@ class ItemControllerTest extends AbstractControllerTest
     {
         $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
         $this->loadFixtures($fixtures);
+        // limit should be overrided to 5
         $param = array(
             'page' => 1,
-            'limit' => 2, //should be overrided to 5
+            'limit' => 2,
         );
-        $route =  $this->getUrl('api_1_item_list', $param);
+        $route = $this->getUrl('api_1_item_list', $param);
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
@@ -39,71 +40,12 @@ class ItemControllerTest extends AbstractControllerTest
                 'id' => 3,
                 'name' => 'name_3',
             ),
-            array(
-                'id' => 4,
-                'name' => 'name_4',
-            ),
-            array(
-                'id' => 5,
-                'name' => 'name_5',
-            ),
         );
 
         $this->assertSame(
             $expected,
             $decoded,
             'Should contains the 5 first items'
-        );
-    }
-
-    /**
-     */
-    public function testJsonListActionPage2()
-    {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
-        $this->loadFixtures($fixtures);
-        $param = array(
-            'page' => 2,
-        );
-        $route =  $this->getUrl('api_1_item_list', $param);
-        $response = $this->doGetRequest($route);
-        $this->assertJsonResponse($response, Codes::HTTP_OK);
-        $decoded = json_decode($response->getContent(), true);
-        $this->assertTrue(
-            is_array($decoded),
-            'Should be an array'
-        );
-        $expected = array(
-            array(
-                'id' => 6,
-                'name' => 'name_6',
-            ),
-            array(
-                'id' => 7,
-                'name' => 'name_7',
-            ),
-            array(
-                'id' => 8,
-                'name' => 'name_8',
-            ),
-            array(
-                'id' => 9,
-                'name' => 'name_9',
-            ),
-            array(
-                'id' => 10,
-                'name' => 'name_10',
-            ),
-        );
-        $this->assertSame(
-            $expected,
-            $decoded,
-            'Should contains the five items'
-        );
-
-        $this->assertSame(
-            $expected,
-            $decoded
         );
     }
 

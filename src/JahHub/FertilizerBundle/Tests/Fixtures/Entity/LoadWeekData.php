@@ -41,4 +41,12 @@ class LoadWeekData extends AbstractLoadEntityData
 
         return $week;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return 3;
+    }
 }

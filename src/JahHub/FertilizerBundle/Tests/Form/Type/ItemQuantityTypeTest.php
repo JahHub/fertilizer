@@ -3,7 +3,7 @@ namespace JahHub\FertilizerBundle\Tests\Form\Type;
 
 use JahHub\FertilizerBundle\Form\Type\ItemQuantityType;
 use Prophecy\Prophecy\ObjectProphecy;
-use Symfony\Component\Form\Test\FormBuilderInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -11,7 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ItemQuantityTypeTest extends AbstractTypeTest
 {
-
     /** @var ItemQuantityType */
     protected $type;
 
@@ -56,6 +55,18 @@ class ItemQuantityTypeTest extends AbstractTypeTest
         /** @var FormBuilderInterface|ObjectProphecy $formBuilder */
         $formBuilder = $this->prophesize('Symfony\Component\Form\FormBuilderInterface');
         $formBuilder->add('quantity', 'number')
+            ->willReturn($formBuilder->reveal())
+            ->shouldBeCalledTimes(1);
+
+        $formBuilder
+            ->add(
+                'item',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Item',
+                )
+            )
+            ->willReturn($formBuilder->reveal())
             ->shouldBeCalledTimes(1);
 
         $this->getType()->buildForm($formBuilder->reveal(), array());
