@@ -1,7 +1,6 @@
 <?php
 namespace JahHub\FertilizerBundle\Form\Type;
 
-use JahHub\FertilizerBundle\Form\DataTransformer\EntityToIdTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

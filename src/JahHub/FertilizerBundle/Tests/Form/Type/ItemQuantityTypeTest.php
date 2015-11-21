@@ -1,7 +1,6 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Form\Type;
 
-use JahHub\FertilizerBundle\Form\DataTransformer\EntityToIdTransformer;
 use JahHub\FertilizerBundle\Form\Type\ItemQuantityType;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\FormBuilderInterface;
