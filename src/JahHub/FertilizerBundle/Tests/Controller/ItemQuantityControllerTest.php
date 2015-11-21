@@ -91,26 +91,6 @@ class ItemQuantityControllerTest extends AbstractControllerTest
                 'item' => 3,
                 'quantity' => 3,
             ),
-            array(
-                'id' => 7,
-                'item' => 4,
-                'quantity' => 4,
-            ),
-            array(
-                'id' => 8,
-                'item' => 4,
-                'quantity' => 4,
-            ),
-            array(
-                'id' => 9,
-                'item' => 5,
-                'quantity' => 5,
-            ),
-            array(
-                'id' => 10,
-                'item' => 5,
-                'quantity' => 5,
-            ),
         );
         $this->assertSame(
             $expected,
