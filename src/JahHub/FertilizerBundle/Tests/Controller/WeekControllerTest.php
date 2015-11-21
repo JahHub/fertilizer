@@ -33,67 +33,12 @@ class WeekControllerTest extends AbstractControllerTest
             array(
                 'id' => 2,
             ),
-            array(
-                'id' => 3,
-            ),
-            array(
-                'id' => 4,
-            ),
-            array(
-                'id' => 5,
-            ),
         );
 
         $this->assertSame(
             $expected,
             $decoded,
             'Should contains the 5 first weeks'
-        );
-    }
-
-    /**
-     */
-    public function testJsonListActionPage2()
-    {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
-        $this->loadFixtures($fixtures);
-        $param = array(
-            'page' => 2,
-        );
-        $route =  $this->getUrl('api_1_week_list', $param);
-        $response = $this->doGetRequest($route);
-        $this->assertJsonResponse($response, Codes::HTTP_OK);
-        $decoded = json_decode($response->getContent(), true);
-        $this->assertTrue(
-            is_array($decoded),
-            'Should be an array'
-        );
-        $expected = array(
-            array(
-                'id' => 6,
-            ),
-            array(
-                'id' => 7,
-            ),
-            array(
-                'id' => 8,
-            ),
-            array(
-                'id' => 9,
-            ),
-            array(
-                'id' => 10,
-            ),
-        );
-        $this->assertSame(
-            $expected,
-            $decoded,
-            'Should contains the five weeks'
-        );
-
-        $this->assertSame(
-            $expected,
-            $decoded
         );
     }
 

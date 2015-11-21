@@ -23,6 +23,13 @@ class ItemQuantityType extends AbstractType
                 array(
                     'class' => 'JahHubFertilizerBundle:Item',
                 )
+            )
+            ->add(
+                'week',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Week',
+                )
             );
     }
 

@@ -57,13 +57,22 @@ class ItemQuantityTypeTest extends AbstractTypeTest
         $formBuilder->add('quantity', 'number')
             ->willReturn($formBuilder->reveal())
             ->shouldBeCalledTimes(1);
-
         $formBuilder
             ->add(
                 'item',
                 'entity',
                 array(
                     'class' => 'JahHubFertilizerBundle:Item',
+                )
+            )
+            ->willReturn($formBuilder->reveal())
+            ->shouldBeCalledTimes(1);
+        $formBuilder
+            ->add(
+                'week',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Week',
                 )
             )
             ->willReturn($formBuilder->reveal())

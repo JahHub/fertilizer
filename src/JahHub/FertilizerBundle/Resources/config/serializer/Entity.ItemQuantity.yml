@@ -18,3 +18,10 @@ JahHub\FertilizerBundle\Entity\ItemQuantity:
       type: integer
       accessor:
         getter: getItemId
+    week:
+      name: week
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getWeekId
