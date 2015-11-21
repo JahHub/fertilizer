@@ -1,6 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Form\Type;
 
+use JahHub\FertilizerBundle\Form\DataTransformer\EntityToIdTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,14 @@ class ItemQuantityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', 'number');
+            ->add('quantity', 'number')
+            ->add(
+                'item',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Item',
+                )
+            );
     }
 
     /**

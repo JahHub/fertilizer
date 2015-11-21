@@ -14,9 +14,10 @@ class ItemControllerTest extends AbstractControllerTest
     {
         $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
         $this->loadFixtures($fixtures);
+        // limit should be overrided to 5
         $param = array(
             'page' => 1,
-            'limit' => 2, //should be overrided to 5
+            'limit' => 2,
         );
         $route =  $this->getUrl('api_1_item_list', $param);
         $response = $this->doGetRequest($route);

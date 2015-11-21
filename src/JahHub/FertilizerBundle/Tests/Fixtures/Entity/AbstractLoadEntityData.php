@@ -1,14 +1,15 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Id\AssignedGenerator;
 
 /**
  * Class AbstractLoadEntityData
  */
-abstract class AbstractLoadEntityData implements FixtureInterface
+abstract class AbstractLoadEntityData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param object $entity
@@ -28,15 +29,19 @@ abstract class AbstractLoadEntityData implements FixtureInterface
      */
     public function persistAndFlush(ObjectManager $manager, array $entities)
     {
-        foreach ($entities as $entity) {
+        foreach ($entities as $key => $entity) {
             $manager->persist($entity);
 
             /** @var ClassMetadata $metadata */
             $metadata = $manager->getClassMetaData(get_class($entity));
             $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-            $metadata->setIdGenerator(new AssignedGenerator());
-        }
 
+            $manager->flush($entity);
+
+            if (is_string($key)) {
+                $this->addReference($key, $entity);
+            }
+        }
         $manager->flush();
     }
 }
