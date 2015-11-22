@@ -34,10 +34,17 @@ class StateControllerTest extends AbstractControllerTest
             array(
                 'id' => 1,
                 'name' => 'name_1',
+                'week_list' => array(
+                    1,
+                ),
             ),
             array(
                 'id' => 2,
                 'name' => 'name_2',
+                'week_list' => array(
+                    2,
+                    3,
+                ),
             ),
         );
 
