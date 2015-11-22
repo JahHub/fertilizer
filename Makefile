@@ -17,7 +17,7 @@ db-reset:
 ###Dev env
 
 ##Tests
-test: unit-test phpcs
+test: phpcs unit-test
 
 unit-test:
 	./bin/phpunit
