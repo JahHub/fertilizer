@@ -9,5 +9,6 @@
         <parameter key="jahhub_fertilizer.entity.state.class">JahHub\FertilizerBundle\Entity\State</parameter>
         <parameter key="jahhub_fertilizer.entity.week.class">JahHub\FertilizerBundle\Entity\Week</parameter>
         <parameter key="jahhub_fertilizer.entity.item_quantity.class">JahHub\FertilizerBundle\Entity\ItemQuantity</parameter>
+        <parameter key="jahhub_fertilizer.entity.schedule.class">JahHub\FertilizerBundle\Entity\Schedule</parameter>
     </parameters>
 </container>

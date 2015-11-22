@@ -9,6 +9,7 @@
         <parameter key="jahhub_fertilizer.handler.state.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
         <parameter key="jahhub_fertilizer.handler.week.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
         <parameter key="jahhub_fertilizer.handler.item_quantity.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.schedule.class">JahHub\FertilizerBundle\Handler\EntityHandler</parameter>
     </parameters>
     <services>
         <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">
@@ -30,6 +31,11 @@
             <argument type="service" id="jahhub_fertilizer.manager.item_quantity"/>
             <argument type="service" id="form.factory"/>
             <argument>fertilizer_item_quantity</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.schedule" class="%jahhub_fertilizer.handler.schedule.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.schedule"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_schedule</argument>
         </service>
     </services>
 </container>

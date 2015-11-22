@@ -21,6 +21,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'state',
             'week',
             'item_quantity',
+            'schedule',
         );
         $interface = 'JahHub\FertilizerBundle\Entity\EntityInterface';
 
@@ -56,6 +57,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'state',
             'week',
             'item_quantity',
+            'schedule',
         );
         $interface = 'JahHub\FertilizerBundle\Repository\EntityRepositoryInterface';
 
@@ -101,6 +103,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'state',
             'week',
             'item_quantity',
+            'schedule',
         );
 
         $parentClass = 'JahHub\FertilizerBundle\Manager\ObjectManager';
@@ -142,6 +145,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'state',
             'week',
             'item_quantity',
+            'schedule',
         );
 
         $interface = 'JahHub\FertilizerBundle\Handler\RESTHandlerInterface';
@@ -188,6 +192,7 @@ class JahHubFertilizerExtensionTest extends AbstractExtensionTestCase
             'state',
             'week',
             'item_quantity',
+            'schedule',
         );
         $parentClass = 'JahHub\FertilizerBundle\Form\Type\AbstractType';
 
