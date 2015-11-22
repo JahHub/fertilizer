@@ -8,8 +8,8 @@ JahHub\FertilizerBundle\Entity\Item:
             - Length:
                 min: 3
                 max: 100
-                minMessage: "AT_LEAST_{min}"
-                maxMessage: "NOT_MORE_THAN_{max}"
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"
 JahHub\FertilizerBundle\Entity\State:
     properties:
         name:
@@ -20,8 +20,8 @@ JahHub\FertilizerBundle\Entity\State:
             - Length:
                 min: 3
                 max: 100
-                minMessage: "AT_LEAST_{min}"
-                maxMessage: "NOT_MORE_THAN_{max}"
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"
 JahHub\FertilizerBundle\Entity\ItemQuantity:
     properties:
         quantity:
@@ -51,5 +51,5 @@ JahHub\FertilizerBundle\Entity\Schedule:
             - Length:
                 min: 3
                 max: 100
-                minMessage: "AT_LEAST_{min}"
-                maxMessage: "NOT_MORE_THAN_{max}"
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"

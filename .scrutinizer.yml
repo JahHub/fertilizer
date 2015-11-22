@@ -42,15 +42,14 @@ build:
             version: 5.4
     dependencies:
         override:
-            - ./configure.sh
-            - composer install --no-interaction
+            - make configure env=test
+            - make install-dep env=test
     tests:
         before:
-            - ./app/console doctrine:database:create -e test
-            - ./app/console doctrine:schema:create -e test
+            - make db-reset env=test
         override:
             -
-                command: ./bin/phpunit --coverage-clover=my-coverage-file
+                command: make scrutinizer-coverage
                 coverage:
                     file: my-coverage-file
                     format: php-clover
