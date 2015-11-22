@@ -63,6 +63,8 @@ class ItemQuantityTypeTest extends AbstractTypeTest
                 'entity',
                 array(
                     'class' => 'JahHubFertilizerBundle:Item',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Item',
                 )
             )
             ->willReturn($formBuilder->reveal())
@@ -73,6 +75,8 @@ class ItemQuantityTypeTest extends AbstractTypeTest
                 'entity',
                 array(
                     'class' => 'JahHubFertilizerBundle:Week',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Week',
                 )
             )
             ->willReturn($formBuilder->reveal())

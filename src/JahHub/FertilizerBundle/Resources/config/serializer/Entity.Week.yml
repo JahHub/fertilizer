@@ -7,3 +7,10 @@ JahHub\FertilizerBundle\Entity\Week:
       access_type: public_method
       type: integer
       read_only: true
+    state:
+      name: state
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getStateId

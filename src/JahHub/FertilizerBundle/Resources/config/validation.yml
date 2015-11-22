@@ -33,3 +33,8 @@ JahHub\FertilizerBundle\Entity\ItemQuantity:
         week:
             - NotNull:
                 message: "NOT_NULL"
+JahHub\FertilizerBundle\Entity\Week:
+    properties:
+        state:
+            - NotNull:
+                message: "NOT_NULL"

@@ -1,10 +1,9 @@
 <?php
 namespace JahHub\FertilizerBundle\Tests\RestHandler;
 
-use Doctrine\ORM\Mapping\Entity;
 use JahHub\FertilizerBundle\Entity\EntityInterface;
-use JahHub\FertilizerBundle\Manager\ObjectManager;
 use JahHub\FertilizerBundle\Handler\EntityHandler;
+use JahHub\FertilizerBundle\Manager\ObjectManager;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

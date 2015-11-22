@@ -16,8 +16,8 @@
         <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Item" field="item">
             <join-column name="item_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
-        <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Week" field="week">
-            <join-column name="week_id" referenced-column-name="id" nullable="false" />
+        <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Week" field="week" orphan-removal="true">
+            <join-column name="week_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
     </entity>
 </doctrine-mapping>

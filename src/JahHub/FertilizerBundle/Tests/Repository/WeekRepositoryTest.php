@@ -57,7 +57,11 @@ class WeekRepositoryTest extends AbstractRepositoryTest
      */
     public function testExist()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+        );
+        $this->loadFixtures($fixtures);
 
         $this->assertTrue($this->repository->exist(1));
         $this->assertFalse($this->repository->exist(self::UNKNOWN_ID));
@@ -67,7 +71,11 @@ class WeekRepositoryTest extends AbstractRepositoryTest
      */
     public function testDelete()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+        );
+        $this->loadFixtures($fixtures);
 
         $entityId = 1;
         $this->repository->delete($entityId);
@@ -78,7 +86,11 @@ class WeekRepositoryTest extends AbstractRepositoryTest
      */
     public function testAll()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData'));
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+        );
+        $this->loadFixtures($fixtures);
 
         $limit = 2;
         $entityList = $this->repository->all(1, $limit);
@@ -89,7 +101,7 @@ class WeekRepositoryTest extends AbstractRepositoryTest
         $limit = 3;
         $entityList = $this->repository->all(1, $limit);
 
-        $this->assertCount(2, $entityList);
+        $this->assertCount($limit, $entityList);
         $this->assertContainsOnlyInstancesOf($this->entityClassName, $entityList);
 
         $entityList = $this->repository->all(0, 0);

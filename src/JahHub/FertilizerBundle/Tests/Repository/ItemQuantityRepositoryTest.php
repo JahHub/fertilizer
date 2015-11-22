@@ -59,6 +59,7 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
     {
         $this->loadFixtures(array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         ));
@@ -73,6 +74,7 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
     {
         $this->loadFixtures(array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         ));
@@ -88,6 +90,7 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
     {
         $this->loadFixtures(array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         ));
