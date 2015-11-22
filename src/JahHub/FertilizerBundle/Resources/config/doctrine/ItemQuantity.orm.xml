@@ -14,10 +14,10 @@
         </id>
         <field name="quantity" type="decimal" />
         <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Item" field="item">
-            <join-column name="item_id" referenced-column-name="id" nullable="false" />
+            <join-column name="item_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
         </many-to-one>
         <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Week" field="week">
-            <join-column name="week_id" referenced-column-name="id" nullable="false" />
+            <join-column name="week_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
         </many-to-one>
     </entity>
 </doctrine-mapping>

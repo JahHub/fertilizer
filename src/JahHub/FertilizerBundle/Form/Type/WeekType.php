@@ -1,6 +1,7 @@
 <?php
 namespace JahHub\FertilizerBundle\Form\Type;
 
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -8,6 +9,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class WeekType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add(
+                'state',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:State',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid State',
+                )
+            );
+    }
+
     /**
      * @param OptionsResolver $resolver
      */

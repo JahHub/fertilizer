@@ -14,6 +14,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -77,6 +78,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -118,6 +120,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -145,6 +148,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -160,6 +164,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -190,6 +195,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
         );
         $this->loadFixtures($fixtures);
@@ -231,6 +237,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -266,6 +273,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
@@ -292,6 +300,7 @@ class ItemQuantityControllerTest extends AbstractControllerTest
     {
         $fixtures = array(
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
             'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );

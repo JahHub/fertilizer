@@ -22,6 +22,8 @@ class ItemQuantityType extends AbstractType
                 'entity',
                 array(
                     'class' => 'JahHubFertilizerBundle:Item',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Item',
                 )
             )
             ->add(
@@ -29,6 +31,8 @@ class ItemQuantityType extends AbstractType
                 'entity',
                 array(
                     'class' => 'JahHubFertilizerBundle:Week',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Week',
                 )
             );
     }

@@ -3,7 +3,6 @@ namespace JahHub\FertilizerBundle\Tests\Form\Type;
 
 use JahHub\FertilizerBundle\Form\Type\WeekType;
 use Prophecy\Prophecy\ObjectProphecy;
-use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -23,6 +22,27 @@ class WeekTypeTest extends AbstractTypeTest
         parent::setUp();
 
         $this->setType(new WeekType());
+    }
+
+    /**
+     */
+    public function testBuild()
+    {
+        /** @var FormBuilderInterface|ObjectProphecy $formBuilder */
+        $formBuilder = $this->prophesize('Symfony\Component\Form\FormBuilderInterface');
+        $formBuilder
+            ->add(
+                'state',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:State',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid State',
+                )
+            )
+            ->shouldBeCalledTimes(1);
+
+        $this->getType()->buildForm($formBuilder->reveal(), array());
     }
 
     /**
