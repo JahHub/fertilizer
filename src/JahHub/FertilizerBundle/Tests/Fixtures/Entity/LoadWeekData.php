@@ -9,21 +9,16 @@ use JahHub\FertilizerBundle\Entity\Week;
  */
 class LoadWeekData extends AbstractLoadEntityData
 {
+    const WEEK_1 = 'week1';
+    const WEEK_2 = 'week2';
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $entityList[] = $this->createWeek(1);
-        $entityList[] = $this->createWeek(2);
-        $entityList[] = $this->createWeek(3);
-        $entityList[] = $this->createWeek(4);
-        $entityList[] = $this->createWeek(5);
-        $entityList[] = $this->createWeek(6);
-        $entityList[] = $this->createWeek(7);
-        $entityList[] = $this->createWeek(8);
-        $entityList[] = $this->createWeek(9);
-        $entityList[] = $this->createWeek(10);
+        $entityList[self::WEEK_1] = $this->createWeek(1);
+        $entityList[self::WEEK_2] = $this->createWeek(2);
 
         $this->persistAndFlush($manager, $entityList);
     }

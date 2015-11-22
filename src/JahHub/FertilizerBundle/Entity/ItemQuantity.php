@@ -81,4 +81,12 @@ class ItemQuantity implements EntityInterface
     {
         return $this->item->getId();
     }
+
+    /**
+     * @return int
+     */
+    public function getWeekId()
+    {
+        return $this->week->getId();
+    }
 }
