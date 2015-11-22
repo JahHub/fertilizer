@@ -10,11 +10,7 @@ services:
 install:
   - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
-  - ./configure.sh
-  - composer install --no-interaction
-  - ./app/console doctrine:database:create -e test
-  - ./app/console doctrine:schema:create -e test
+  - make build env=test
 script:
-  - ./bin/phpunit
-  - phpcs
+  - make test
 
