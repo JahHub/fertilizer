@@ -123,6 +123,33 @@ class ObjectManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     */
+    public function testPersistAndFlush()
+    {
+        $className = 'JahHub\FertilizerBundle\Entity\EntityInterface';
+        /** @var DoctrineObjectManager|ObjectProphecy $manager */
+        $manager = $this->prophesize('Doctrine\Common\Persistence\ObjectManager');
+        /** @var EntityInterface|ObjectProphecy $entity */
+        $entity = $this->prophesize('JahHub\FertilizerBundle\Entity\EntityInterface');
+
+        $this->repository->getClassName()
+            ->willReturn($className)
+            ->shouldBeCalledTimes(1);
+
+        $this->managerRegistry->getManagerForClass($className)
+            ->willReturn($manager->reveal())
+            ->shouldBeCalledTimes(1);
+
+        $manager->persist($entity->reveal())
+            ->shouldBeCalledTimes(1);
+
+        $manager->flush(array($entity->reveal()))
+            ->shouldBeCalledTimes(1);
+
+        $this->manager->persistAndFlush($entity->reveal());
+    }
+
+    /**
      * @dataProvider getTestBatchPersistAndFlushData
      * @param int   $batchLimit
      * @param array $entityList

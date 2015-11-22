@@ -11,3 +11,17 @@ JahHub\FertilizerBundle\Entity\ItemQuantity:
       expose: true
       access_type: public_method
       type: float
+    item:
+      name: item
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getItemId
+    week:
+      name: week
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getWeekId

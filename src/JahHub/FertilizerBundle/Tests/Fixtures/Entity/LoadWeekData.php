@@ -2,6 +2,7 @@
 namespace JahHub\FertilizerBundle\Tests\Fixtures\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use JahHub\FertilizerBundle\Entity\State;
 use JahHub\FertilizerBundle\Entity\Week;
 
 /**
@@ -9,36 +10,43 @@ use JahHub\FertilizerBundle\Entity\Week;
  */
 class LoadWeekData extends AbstractLoadEntityData
 {
+    const WEEK_1 = 'week1';
+    const WEEK_2 = 'week2';
+    const WEEK_3 = 'week3';
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $entityList[] = $this->createWeek(1);
-        $entityList[] = $this->createWeek(2);
-        $entityList[] = $this->createWeek(3);
-        $entityList[] = $this->createWeek(4);
-        $entityList[] = $this->createWeek(5);
-        $entityList[] = $this->createWeek(6);
-        $entityList[] = $this->createWeek(7);
-        $entityList[] = $this->createWeek(8);
-        $entityList[] = $this->createWeek(9);
-        $entityList[] = $this->createWeek(10);
+        $entityList[self::WEEK_1] = $this->createWeek(1, $this->getReference(LoadStateData::STATE_1));
+        $entityList[self::WEEK_2] = $this->createWeek(2, $this->getReference(LoadStateData::STATE_2));
+        $entityList[self::WEEK_3] = $this->createWeek(3, $this->getReference(LoadStateData::STATE_2));
 
         $this->persistAndFlush($manager, $entityList);
     }
 
 
     /**
-     * @param int $id
+     * @param int   $id
+     * @param State $state
      *
      * @return Week
      */
-    public function createWeek($id)
+    public function createWeek($id, State $state)
     {
         $week = new Week();
+        $week->setState($state);
         $this->setEntityId($week, $id);
 
         return $week;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return 3;
     }
 }

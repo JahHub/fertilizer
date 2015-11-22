@@ -13,5 +13,10 @@
             <generator strategy="AUTO" />
         </id>
         <field name="name" />
+        <one-to-many target-entity="JahHub\FertilizerBundle\Entity\Week" field="weekList" mapped-by="state">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

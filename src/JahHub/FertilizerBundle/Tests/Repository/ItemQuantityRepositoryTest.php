@@ -57,7 +57,12 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
      */
     public function testExist()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData'));
+        $this->loadFixtures(array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        ));
 
         $this->assertTrue($this->repository->exist(1));
         $this->assertFalse($this->repository->exist(self::UNKNOWN_ID));
@@ -67,7 +72,12 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
      */
     public function testDelete()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData'));
+        $this->loadFixtures(array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        ));
 
         $entityId = 1;
         $this->repository->delete($entityId);
@@ -78,7 +88,12 @@ class ItemQuantityRepositoryTest extends AbstractRepositoryTest
      */
     public function testAll()
     {
-        $this->loadFixtures(array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData'));
+        $this->loadFixtures(array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        ));
 
         $limit = 2;
         $entityList = $this->repository->all(1, $limit);

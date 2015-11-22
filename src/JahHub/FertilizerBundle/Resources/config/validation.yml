@@ -22,3 +22,19 @@ JahHub\FertilizerBundle\Entity\State:
                 max: 100
                 minMessage: "AT_LEAST_{min}"
                 maxMessage: "NOT_MORE_THAN_{max}"
+JahHub\FertilizerBundle\Entity\ItemQuantity:
+    properties:
+        quantity:
+            - NotNull:
+                message: "NOT_NULL"
+        item:
+            - NotNull:
+                message: "NOT_NULL"
+        week:
+            - NotNull:
+                message: "NOT_NULL"
+JahHub\FertilizerBundle\Entity\Week:
+    properties:
+        state:
+            - NotNull:
+                message: "NOT_NULL"

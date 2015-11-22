@@ -34,7 +34,7 @@ class Week implements EntityInterface
     /**
      * @param State $state
      */
-    public function setState($state)
+    public function setState(State $state)
     {
         $this->state = $state;
     }
@@ -53,5 +53,28 @@ class Week implements EntityInterface
     public function setItemQuantityList($itemQuantityList)
     {
         $this->itemQuantityList = $itemQuantityList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStateId()
+    {
+        return $this->getState()->getId();
+    }
+
+    /**
+     * @return int[]
+     */
+    public function getItemQuantityIdList()
+    {
+        // $this->getItemQuantityList() could return a $this->getItemQuantityList()
+        // To be dependant => use iteration
+        $idList = array();
+        foreach ($this->getItemQuantityList() as $itemQuantity) {
+            $idList[] = $itemQuantity->getId();
+        }
+
+        return $idList;
     }
 }
