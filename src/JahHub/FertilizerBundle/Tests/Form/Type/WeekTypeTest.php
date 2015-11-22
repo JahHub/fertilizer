@@ -41,6 +41,9 @@ class WeekTypeTest extends AbstractTypeTest
                 )
             )
             ->shouldBeCalledTimes(1);
+        $formBuilder->add('number', 'integer')
+            ->willReturn($formBuilder->reveal())
+            ->shouldBeCalledTimes(1);
 
         $this->getType()->buildForm($formBuilder->reveal(), array());
     }

@@ -35,6 +35,7 @@ class WeekControllerTest extends AbstractControllerTest
         $expected = array(
             array(
                 'id' => 1,
+                'number' => 1,
                 'state' => 1,
                 'item_quantity_list' => array(
                     1,
@@ -44,6 +45,7 @@ class WeekControllerTest extends AbstractControllerTest
             ),
             array(
                 'id' => 2,
+                'number' => 2,
                 'state' => 2,
                 'item_quantity_list' => array(
                     4,
@@ -53,6 +55,7 @@ class WeekControllerTest extends AbstractControllerTest
             ),
             array(
                 'id' => 3,
+                'number' => 3,
                 'state' => 2,
                 'item_quantity_list' => array(),
             ),
@@ -83,6 +86,7 @@ class WeekControllerTest extends AbstractControllerTest
         $decoded = json_decode($response->getContent(), true);
         $expected = array(
             'id' => $id,
+            'number' => 1,
             'item_quantity_list' => array(
                 1,
                 2,
@@ -148,6 +152,7 @@ class WeekControllerTest extends AbstractControllerTest
         $this->loadFixtures($fixtures);
         $param = array(
             'state' => 1,
+            'number' => 10,
         );
         $jsonParam = json_encode($param);
         $response = $this->doPostRequest($route, $jsonParam);
@@ -190,6 +195,7 @@ class WeekControllerTest extends AbstractControllerTest
         $route = $this->getUrl('api_1_week_put', array('id' => $id));
         $param = array(
             'state' => 1,
+            'number' => 8,
         );
         $jsonParam = json_encode($param);
 
