@@ -61,10 +61,13 @@ class ScheduleTypeTest extends AbstractTypeTest
 
         $formBuilder
             ->add(
-                'stateList',
+                'state_list',
                 'collection',
                 array(
+                    'property_path' => 'stateList',
                     'type' => 'entity',
+                    'allow_add' => true,
+                    'allow_delete' => true,
                     'options' => array(
                         'class' => 'JahHubFertilizerBundle:State',
                         'empty_data' => false,
