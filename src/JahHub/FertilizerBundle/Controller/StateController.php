@@ -37,9 +37,9 @@ class StateController extends AbstractController
      * )
      * @QueryParam(
      *  name="limit",
-     *  requirements="{5-20}",
+     *  requirements="[5-9]|1[0-9]|20",
      *  default="5",
-     *  description="How many states to return."
+     *  description="How many states to return ([5-20])."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")

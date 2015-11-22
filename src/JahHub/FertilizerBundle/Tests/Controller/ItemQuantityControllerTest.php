@@ -84,7 +84,8 @@ class ItemQuantityControllerTest extends AbstractControllerTest
         );
         $this->loadFixtures($fixtures);
         $param = array(
-            'page' => 2,
+            'page' => 1,
+            'limit' => 6,
         );
         $route =  $this->getUrl('api_1_item_quantity_list', $param);
         $response = $this->doGetRequest($route);
@@ -96,6 +97,36 @@ class ItemQuantityControllerTest extends AbstractControllerTest
         );
         $expected = array(
             array(
+                'id' => 1,
+                'item' => 1,
+                'week' => 1,
+                'quantity' => 1,
+            ),
+            array(
+                'id' => 2,
+                'item' => 1,
+                'week' => 1,
+                'quantity' => 1,
+            ),
+            array(
+                'id' => 3,
+                'item' => 2,
+                'week' => 1,
+                'quantity' => 2,
+            ),
+            array(
+                'id' => 4,
+                'item' => 2,
+                'week' => 2,
+                'quantity' => 2,
+            ),
+            array(
+                'id' => 5,
+                'item' => 3,
+                'week' => 2,
+                'quantity' => 3,
+            ),
+            array(
                 'id' => 6,
                 'item' => 3,
                 'week' => 2,
@@ -105,12 +136,20 @@ class ItemQuantityControllerTest extends AbstractControllerTest
         $this->assertSame(
             $expected,
             $decoded,
-            'Should contains the five ItemQuantity entities'
+            'Should contains the six first ItemQuantity entities'
         );
-
+        $param = array(
+            'page' => 2,
+            'limit' => 6,
+        );
+        $route =  $this->getUrl('api_1_item_quantity_list', $param);
+        $response = $this->doGetRequest($route);
+        $this->assertStatusCode($response, Codes::HTTP_OK);
+        $decoded = json_decode($response->getContent(), true);
         $this->assertSame(
-            $expected,
-            $decoded
+            array(),
+            $decoded,
+            'Should contains the no ItemQuantity entities'
         );
     }
 
