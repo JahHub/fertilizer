@@ -2,9 +2,9 @@
 namespace JahHub\FertilizerBundle\Entity;
 
 /**
- * Class State
+ * Class Schedule
  */
-class State implements EntityInterface
+class Schedule implements EntityInterface
 {
     /** @var int */
     private $id;
@@ -12,8 +12,8 @@ class State implements EntityInterface
     /** @var string */
     private $name;
 
-    /** @var Week[] */
-    private $weekList = array();
+    /** @var State[] */
+    private $stateList = array();
 
     /**
      * @return int
@@ -24,19 +24,19 @@ class State implements EntityInterface
     }
 
     /**
-     * @return Week[]
+     * @return State
      */
-    public function getWeekList()
+    public function getStateList()
     {
-        return $this->weekList;
+        return $this->stateList;
     }
 
     /**
-     * @param Week[] $weekList
+     * @param State[] $stateList
      */
-    public function setWeekList(array $weekList)
+    public function setStateList(array $stateList)
     {
-        $this->weekList = $weekList;
+        $this->stateList = $stateList;
     }
 
     /**
@@ -58,13 +58,13 @@ class State implements EntityInterface
     /**
      * @return int[]
      */
-    public function getWeekIdList()
+    public function getStateIdList()
     {
-        // $this->getWeekList() could return a Doctrine\Common\Collections\Collection
+        // $this->getStateList() could return a Doctrine\Common\Collections\Collection
         // To be dependant => use iteration
         $idList = array();
-        foreach ($this->getWeekList() as $week) {
-            $idList[] = $week->getId();
+        foreach ($this->getStateList() as $itemQuantity) {
+            $idList[] = $itemQuantity->getId();
         }
 
         return $idList;
