@@ -9,7 +9,7 @@ install-dep:
 	./bin/install-composer
 	./composer.phar install
 db-reset:
-	app/console doctrine:database:drop --force -e $(env)
+	app/console doctrine:database:drop --force -e $(env) || true
 	app/console doctrine:database:create -e $(env)
 	app/console doctrine:schema:create -e $(env)
 
