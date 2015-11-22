@@ -43,7 +43,7 @@ build:
     dependencies:
         override:
             - make configure env=test
-            - make install-dep
+            - make install-dep env=test
     tests:
         before:
             - make db-reset env=test
