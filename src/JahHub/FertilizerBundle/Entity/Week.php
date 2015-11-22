@@ -68,7 +68,7 @@ class Week implements EntityInterface
      */
     public function getItemQuantityIdList()
     {
-        // $this->getItemQuantityList() could return a $this->getItemQuantityList()
+        // $this->getItemQuantityList() could return a Doctrine\Common\Collections\Collection
         // To be dependant => use iteration
         $idList = array();
         foreach ($this->getItemQuantityList() as $itemQuantity) {

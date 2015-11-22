@@ -23,5 +23,9 @@
             <argument type="service" id="jahhub_fertilizer.repository.item_quantity"/>
             <argument id="doctrine" type="service"/>
         </service>
+        <service id="jahhub_fertilizer.manager.schedule" class="%jahhub_fertilizer.manager.object.class%" >
+            <argument type="service" id="jahhub_fertilizer.repository.schedule"/>
+            <argument id="doctrine" type="service"/>
+        </service>
     </services>
 </container>

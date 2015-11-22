@@ -18,3 +18,8 @@ jahhub_fertilizer_item_quantity:
     prefix: /item_quantities
     resource: "JahHub\FertilizerBundle\Controller\ItemQuantityController"
     name_prefix:  api_1_item_quantity_ # naming collision
+jahhub_fertilizer_schedule:
+    type: rest
+    prefix: /schedules
+    resource: "JahHub\FertilizerBundle\Controller\ScheduleController"
+    name_prefix:  api_1_schedule_ # naming collision
