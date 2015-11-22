@@ -12,5 +12,18 @@
         <id name="id" type="integer">
             <generator strategy="AUTO" />
         </id>
+        <one-to-many target-entity="JahHub\FertilizerBundle\Entity\ItemQuantity" field="itemQuantityList" mapped-by="week">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+        <many-to-one
+                target-entity="JahHub\FertilizerBundle\Entity\State"
+                field="state"
+                inversed-by="weekList"
+                fetch="EAGER"
+            >
+            <join-column name="state_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

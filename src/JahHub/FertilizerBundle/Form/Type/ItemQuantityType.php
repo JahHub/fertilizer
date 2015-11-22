@@ -16,7 +16,25 @@ class ItemQuantityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', 'number');
+            ->add('quantity', 'number')
+            ->add(
+                'item',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Item',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Item',
+                )
+            )
+            ->add(
+                'week',
+                'entity',
+                array(
+                    'class' => 'JahHubFertilizerBundle:Week',
+                    'empty_data' => false,
+                    'invalid_message' => 'Invalid Week',
+                )
+            );
     }
 
     /**

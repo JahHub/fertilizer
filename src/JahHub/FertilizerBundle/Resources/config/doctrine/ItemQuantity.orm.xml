@@ -13,5 +13,11 @@
             <generator strategy="AUTO" />
         </id>
         <field name="quantity" type="decimal" />
+        <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Item" field="item" fetch="EAGER">
+            <join-column name="item_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
+        <many-to-one target-entity="JahHub\FertilizerBundle\Entity\Week" field="week" fetch="EAGER">
+            <join-column name="week_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

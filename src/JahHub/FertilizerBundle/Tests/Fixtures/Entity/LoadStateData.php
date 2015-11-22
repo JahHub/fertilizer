@@ -9,21 +9,16 @@ use JahHub\FertilizerBundle\Entity\State;
  */
 class LoadStateData extends AbstractLoadEntityData
 {
+    const STATE_1 = 'state1';
+    const STATE_2 = 'state2';
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $entityList[] = $this->createState(1, 'name_1');
-        $entityList[] = $this->createState(2, 'name_2');
-        $entityList[] = $this->createState(3, 'name_3');
-        $entityList[] = $this->createState(4, 'name_4');
-        $entityList[] = $this->createState(5, 'name_5');
-        $entityList[] = $this->createState(6, 'name_6');
-        $entityList[] = $this->createState(7, 'name_7');
-        $entityList[] = $this->createState(8, 'name_8');
-        $entityList[] = $this->createState(9, 'name_9');
-        $entityList[] = $this->createState(10, 'name_10');
+        $entityList[self::STATE_1] = $this->createState(1, 'name_1');
+        $entityList[self::STATE_2] = $this->createState(2, 'name_2');
 
         $this->persistAndFlush($manager, $entityList);
     }
@@ -41,5 +36,13 @@ class LoadStateData extends AbstractLoadEntityData
         $this->setEntityId($state, $id);
 
         return $state;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return 2;
     }
 }

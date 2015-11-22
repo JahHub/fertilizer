@@ -12,11 +12,17 @@ class WeekControllerTest extends AbstractControllerTest
      */
     public function testJsonListAction()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
+        // limit should be overrided to 5
         $param = array(
             'page' => 1,
-            'limit' => 2, //should be overrided to 5
+            'limit' => 2,
         );
         $route =  $this->getUrl('api_1_week_list', $param);
         $response = $this->doGetRequest($route);
@@ -29,18 +35,26 @@ class WeekControllerTest extends AbstractControllerTest
         $expected = array(
             array(
                 'id' => 1,
+                'state' => 1,
+                'item_quantity_list' => array(
+                    1,
+                    2,
+                    3,
+                ),
             ),
             array(
                 'id' => 2,
+                'state' => 2,
+                'item_quantity_list' => array(
+                    4,
+                    5,
+                    6,
+                ),
             ),
             array(
                 'id' => 3,
-            ),
-            array(
-                'id' => 4,
-            ),
-            array(
-                'id' => 5,
+                'state' => 2,
+                'item_quantity_list' => array(),
             ),
         );
 
@@ -53,45 +67,30 @@ class WeekControllerTest extends AbstractControllerTest
 
     /**
      */
-    public function testJsonListActionPage2()
+    public function testJsonGetAction()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
-        $this->loadFixtures($fixtures);
-        $param = array(
-            'page' => 2,
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
         );
-        $route =  $this->getUrl('api_1_week_list', $param);
+        $this->loadFixtures($fixtures);
+        $id = 1;
+        $route =  $this->getUrl('api_1_week_get', array('id' => $id));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
-        $this->assertTrue(
-            is_array($decoded),
-            'Should be an array'
-        );
         $expected = array(
-            array(
-                'id' => 6,
+            'id' => $id,
+            'item_quantity_list' => array(
+                1,
+                2,
+                3,
             ),
-            array(
-                'id' => 7,
-            ),
-            array(
-                'id' => 8,
-            ),
-            array(
-                'id' => 9,
-            ),
-            array(
-                'id' => 10,
-            ),
+            'state' => 1,
         );
-        $this->assertSame(
-            $expected,
-            $decoded,
-            'Should contains the five weeks'
-        );
-
-        $this->assertSame(
+        $this->assertEquals(
             $expected,
             $decoded
         );
@@ -99,22 +98,14 @@ class WeekControllerTest extends AbstractControllerTest
 
     /**
      */
-    public function testJsonGetAction()
-    {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
-        $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_week_get', array('id' => 1));
-        $response = $this->doGetRequest($route);
-        $this->assertJsonResponse($response, Codes::HTTP_OK);
-        $decoded = json_decode($response->getContent(), true);
-        $this->assertTrue(isset($decoded['id']));
-    }
-
-    /**
-     */
     public function testJsonHead()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
         $route =  $this->getUrl('api_1_week_get', array('id' => 1));
         $response = $this->doHeadRequest($route);
@@ -125,7 +116,12 @@ class WeekControllerTest extends AbstractControllerTest
      */
     public function testJsonHeadWithUnknownWeek()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
         $route =  $this->getUrl('api_1_week_get', array('id' => self::UNKNOWN_ID));
         $response = $this->doHeadRequest($route);
@@ -146,7 +142,13 @@ class WeekControllerTest extends AbstractControllerTest
     public function testJsonPostAction()
     {
         $route =  $this->getUrl('api_1_week_post');
-        $param = array();
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+        );
+        $this->loadFixtures($fixtures);
+        $param = array(
+            'state' => 1,
+        );
         $jsonParam = json_encode($param);
         $response = $this->doPostRequest($route, $jsonParam);
         $this->assertSame(
@@ -177,11 +179,18 @@ class WeekControllerTest extends AbstractControllerTest
      */
     public function testJsonPutAction($id, $httpCode, $assertFullRedirection)
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
 
         $route = $this->getUrl('api_1_week_put', array('id' => $id));
-        $param = array();
+        $param = array(
+            'state' => 1,
+        );
         $jsonParam = json_encode($param);
 
         $response = $this->doPutRequest($route, $jsonParam);
@@ -204,7 +213,12 @@ class WeekControllerTest extends AbstractControllerTest
      */
     public function testJsonPutActionWithBadParameters()
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
 
         $route = $this->getUrl('api_1_week_put', array('id' => 1));
@@ -226,7 +240,12 @@ class WeekControllerTest extends AbstractControllerTest
      */
     public function testJsonDeleteAction($id, $httpCode)
     {
-        $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData');
+        $fixtures = array(
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadStateData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadWeekData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData',
+            'JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemQuantityData',
+        );
         $this->loadFixtures($fixtures);
 
         $route = $this->getUrl('api_1_week_delete', array('id' => $id));

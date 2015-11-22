@@ -89,7 +89,7 @@ class StateRepositoryTest extends AbstractRepositoryTest
         $limit = 3;
         $entityList = $this->repository->all(1, $limit);
 
-        $this->assertCount($limit, $entityList);
+        $this->assertCount(2, $entityList);
         $this->assertContainsOnlyInstancesOf($this->entityClassName, $entityList);
 
         $entityList = $this->repository->all(0, 0);

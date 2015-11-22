@@ -79,6 +79,14 @@ class ObjectManager
     }
 
     /**
+     * @param EntityInterface $entity
+     */
+    public function persistAndFlush(EntityInterface $entity)
+    {
+        $this->batchPersistAndFlush(array($entity));
+    }
+
+    /**
      * @param EntityInterface[] $entities
      * @param int               $batchLimit default to 10
      */
