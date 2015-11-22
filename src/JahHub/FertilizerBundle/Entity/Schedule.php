@@ -39,8 +39,6 @@ class Schedule implements EntityInterface
         $this->stateList = $stateList;
     }
 
-
-
     /**
      * @return string
      */
