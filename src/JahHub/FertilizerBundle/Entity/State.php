@@ -60,8 +60,10 @@ class State implements EntityInterface
      */
     public function getWeekIdList()
     {
+        // $this->getItemQuantityList() could return a $this->getWeekList()
+        // To be dependant => use iteration
         $idList = array();
-        foreach ($this->weekList as $week) {
+        foreach ($this->getWeekList() as $week) {
             $idList[] = $week->getId();
         }
 
