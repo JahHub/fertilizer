@@ -61,6 +61,7 @@ class LoadItemQuantityData extends AbstractLoadEntityData
      * @param int   $id
      * @param float $quantity
      * @param Item  $item
+     * @param Week  $week
      *
      * @return ItemQuantity
      */

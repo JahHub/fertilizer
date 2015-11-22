@@ -37,7 +37,7 @@ class ItemQuantity implements EntityInterface
     /**
      * @param Item $item
      */
-    public function setItem($item)
+    public function setItem(Item $item)
     {
         $this->item = $item;
     }
@@ -69,7 +69,7 @@ class ItemQuantity implements EntityInterface
     /**
      * @param Week $week
      */
-    public function setWeek($week)
+    public function setWeek(Week $week)
     {
         $this->week = $week;
     }

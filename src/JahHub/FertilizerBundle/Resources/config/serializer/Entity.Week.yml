@@ -14,3 +14,9 @@ JahHub\FertilizerBundle\Entity\Week:
       type: integer
       accessor:
         getter: getStateId
+    itemQuantityList:
+       expose: true
+       access_type: public_method
+       type: array<integer>
+       accessor:
+           getter: getItemQuantityIdList

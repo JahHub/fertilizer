@@ -62,4 +62,19 @@ class Week implements EntityInterface
     {
         return $this->getState()->getId();
     }
+
+    /**
+     * @return int[]
+     */
+    public function getItemQuantityIdList()
+    {
+        // $this->getItemQuantityList() could return a $this->getItemQuantityList()
+        // To be dependant => use iteration
+        $idList = array();
+        foreach ($this->getItemQuantityList() as $itemQuantity) {
+            $idList[] = $itemQuantity->getId();
+        }
+
+        return $idList;
+    }
 }
