@@ -12,6 +12,7 @@
         <id name="id" type="integer">
             <generator strategy="AUTO" />
         </id>
+        <field name="number" type="integer" nullable="false"/>
         <one-to-many target-entity="JahHub\FertilizerBundle\Entity\ItemQuantity" field="itemQuantityList" mapped-by="week">
             <cascade>
                 <cascade-remove/>

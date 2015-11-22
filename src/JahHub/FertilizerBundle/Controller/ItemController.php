@@ -23,7 +23,8 @@ class ItemController extends AbstractController
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "Item"
+     *   section = "Item",
+     *   views={"default", "ItemEntity", "List"}
      * )
      *
      * @QueryParam(
@@ -61,7 +62,8 @@ class ItemController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when item is not found"
      *   },
-     *   section = "Item"
+     *   section = "Item",
+     *   views={"default", "ItemEntity", "Get"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -85,7 +87,8 @@ class ItemController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when item is not found"
      *   },
-     *   section = "Item"
+     *   section = "Item",
+     *   views={"default", "ItemEntity", "Delete"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -112,7 +115,8 @@ class ItemController extends AbstractController
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Item"
+     *   section = "Item",
+     *   views={"default", "ItemEntity", "Create"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -136,7 +140,8 @@ class ItemController extends AbstractController
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Item"
+     *   section = "Item",
+     *   views={"default", "ItemEntity", "Put"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})

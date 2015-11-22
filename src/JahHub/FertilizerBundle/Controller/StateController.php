@@ -24,7 +24,8 @@ class StateController extends AbstractController
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "State"
+     *   section = "State",
+     *   views={"default", "StateEntity", "List"}
      * )
      *
      * @QueryParam(
@@ -62,7 +63,8 @@ class StateController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when state is not found"
      *   },
-     *   section = "State"
+     *   section = "State",
+     *   views={"default", "StateEntity", "Get"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -87,7 +89,8 @@ class StateController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when state is not found"
      *   },
-     *   section = "State"
+     *   section = "State",
+     *   views={"default", "StateEntity", "Delete"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -113,7 +116,8 @@ class StateController extends AbstractController
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "State"
+     *   section = "State",
+     *   views={"default", "StateEntity", "Create"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -137,7 +141,8 @@ class StateController extends AbstractController
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "State"
+     *   section = "State",
+     *   views={"default", "StateEntity", "Put"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})

@@ -19,9 +19,21 @@ class LoadWeekData extends AbstractLoadEntityData
      */
     public function load(ObjectManager $manager)
     {
-        $entityList[self::WEEK_1] = $this->createWeek(1, $this->getReference(LoadStateData::STATE_1));
-        $entityList[self::WEEK_2] = $this->createWeek(2, $this->getReference(LoadStateData::STATE_2));
-        $entityList[self::WEEK_3] = $this->createWeek(3, $this->getReference(LoadStateData::STATE_2));
+        $entityList[self::WEEK_1] = $this->createWeek(
+            1,
+            1,
+            $this->getReference(LoadStateData::STATE_1)
+        );
+        $entityList[self::WEEK_2] = $this->createWeek(
+            2,
+            2,
+            $this->getReference(LoadStateData::STATE_2)
+        );
+        $entityList[self::WEEK_3] = $this->createWeek(
+            3,
+            3,
+            $this->getReference(LoadStateData::STATE_2)
+        );
 
         $this->persistAndFlush($manager, $entityList);
     }
@@ -29,13 +41,15 @@ class LoadWeekData extends AbstractLoadEntityData
 
     /**
      * @param int   $id
+     * @param int   $number
      * @param State $state
      *
      * @return Week
      */
-    public function createWeek($id, State $state)
+    public function createWeek($id, $number, State $state)
     {
         $week = new Week();
+        $week->setNumber($number);
         $week->setState($state);
         $this->setEntityId($week, $id);
 
