@@ -10,7 +10,10 @@ services:
 install:
   - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
+  - composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH
   - make build env=test
 script:
   - make test
-
+env:
+  global:
+    secure: ruBgI1nWJVBGEZYJ09VJKdFa80gY+l5hmJF00I4+JGI4XZWrqiOfS9Gn1RVZ071r5DF5k6usQUzZadEEZZXy1B8b0qFqAlO7zeu97FXBoNFBBUm07IiwmPp7W4iYnM0ikLDH6HbE1ATJN0iK9k9R55b0jNtei8VWkKxcxWxPEUKpgVNxX/A7cjss7pLPwWCiD7OXDaDJ8L6gos4VuBl0P4VlzgXVYtztHaB4m1QDXLaaZXanlU3XxP1bNYfGDcjumBBQRVjDTbW4yI3DJSCqCzCzG1x/8o0X/OAkxTF0zX2DVwpG0PFIfkHemom8pVJhVb2T9jMxN+jpSDq90i5QE0vQagoaQQCoQ0/NIatodfQAh5CujXVYLUXX105ZxkBVAYiCt8bQy9q0ZaUt1pDC8IeyUYcNhzWW0EHWT5X/4oW51qD7eyy4lkYODsXMZDPDMkqoZThFozMisKEV/QyJTzBPx2SnQQxML1T6UVsg4DGKLdBXJ5gxoXGyrBKWSlLIU4r/Xu10nn2ij+aw3nXtnVFjw0MpA0t3APXlUPksAP4PYnjopX88ymXfzKsORDYpKVq6ASRYP5xksOxfLHhbqgR/poY+LMRW7SNJ8pqaskgFizNVJGzl1zBTD5HnonXqpcGcD1B0g3GxCMe41D8ED5C4cK2dZ1KAILgQpzLpoUU=
