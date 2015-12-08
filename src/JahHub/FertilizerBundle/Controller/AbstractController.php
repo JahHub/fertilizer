@@ -66,19 +66,7 @@ abstract class AbstractController extends FOSRestController
     protected function handlePut($returnRouteName, $id)
     {
         try {
-            $handler = $this->getHandler();
-            if (!($entity = $handler->get($id))) {
-                $statusCode = Codes::HTTP_CREATED;
-                $entity = $handler->post(
-                    $this->container->get('request')->request->all()
-                );
-            } else {
-                $statusCode = Codes::HTTP_NO_CONTENT;
-                $entity = $handler->put(
-                    $entity,
-                    $this->container->get('request')->request->all()
-                );
-            }
+            list($entity, $statusCode) = $this->putOrPost($id);
 
             $routeOptions = array(
                 'id' => $entity->getId(),
@@ -108,6 +96,32 @@ abstract class AbstractController extends FOSRestController
         }
 
         return $entity;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return array
+     */
+    protected function putOrPost($id)
+    {
+        $handler = $this->getHandler();
+        if (!($entity = $handler->get($id))) {
+            $statusCode = Codes::HTTP_CREATED;
+            $entity = $handler->post(
+                $this->container->get('request')->request->all()
+            );
+
+            return array($entity, $statusCode);
+        } else {
+            $statusCode = Codes::HTTP_NO_CONTENT;
+            $entity = $handler->put(
+                $entity,
+                $this->container->get('request')->request->all()
+            );
+
+            return array($entity, $statusCode);
+        }
     }
 
     /**

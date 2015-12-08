@@ -16,6 +16,7 @@ class WeekType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('number', 'integer')
             ->add(
                 'state',
                 'entity',

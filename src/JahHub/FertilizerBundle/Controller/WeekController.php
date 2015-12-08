@@ -24,7 +24,8 @@ class WeekController extends AbstractController
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "Week"
+     *   section = "Week",
+     *   views={"default", "WeekEntity", "List"}
      * )
      *
      * @QueryParam(
@@ -36,9 +37,9 @@ class WeekController extends AbstractController
      * )
      * @QueryParam(
      *  name="limit",
-     *  requirements="{5-20}",
+     *  requirements="[5-9]|1[0-9]|20",
      *  default="5",
-     *  description="How many weeks to return."
+     *  description="How many weeks to return ([5-20])."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")
@@ -62,7 +63,8 @@ class WeekController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when week is not found"
      *   },
-     *   section = "Week"
+     *   section = "Week",
+     *   views={"default", "WeekEntity", "Get"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -87,7 +89,8 @@ class WeekController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when week is not found"
      *   },
-     *   section = "Week"
+     *   section = "Week",
+     *   views={"default", "WeekEntity", "Delete"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -113,7 +116,8 @@ class WeekController extends AbstractController
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Week"
+     *   section = "Week",
+     *   views={"default", "WeekEntity", "Create"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -137,7 +141,8 @@ class WeekController extends AbstractController
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Week"
+     *   section = "Week",
+     *   views={"default", "WeekEntity", "Put"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})

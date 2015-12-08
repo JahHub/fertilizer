@@ -55,12 +55,19 @@ class ItemControllerTest extends AbstractControllerTest
     {
         $fixtures = array('JahHub\FertilizerBundle\Tests\Fixtures\Entity\LoadItemData');
         $this->loadFixtures($fixtures);
-        $route =  $this->getUrl('api_1_item_get', array('id' => 1));
+        $id = 1;
+        $route =  $this->getUrl('api_1_item_get', array('id' => $id));
         $response = $this->doGetRequest($route);
         $this->assertJsonResponse($response, Codes::HTTP_OK);
         $decoded = json_decode($response->getContent(), true);
-        $this->assertTrue(isset($decoded['id']));
-        $this->assertTrue(isset($decoded['name']));
+        $expected = array(
+            'id' => $id,
+            'name' => 'name_1',
+        );
+        $this->assertEquals(
+            $expected,
+            $decoded
+        );
     }
 
     /**

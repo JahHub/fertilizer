@@ -24,7 +24,8 @@ class ItemQuantityController extends AbstractController
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "ItemQuantity"
+     *   section = "ItemQuantity",
+     *   views={"default", "ItemQuantityEntity", "List"}
      * )
      *
      * @QueryParam(
@@ -36,9 +37,9 @@ class ItemQuantityController extends AbstractController
      * )
      * @QueryParam(
      *  name="limit",
-     *  requirements="{5-20}",
+     *  requirements="[5-9]|1[0-9]|20",
      *  default="5",
-     *  description="How many ItemQuantity entities to return."
+     *  description="How many ItemQuantity entities to return ([5-20])."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")
@@ -62,7 +63,8 @@ class ItemQuantityController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when item_quantity is not found"
      *   },
-     *   section = "ItemQuantity"
+     *   section = "ItemQuantity",
+     *   views={"default", "ItemQuantityEntity", "Get"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -87,7 +89,8 @@ class ItemQuantityController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when item_quantity is not found"
      *   },
-     *   section = "ItemQuantity"
+     *   section = "ItemQuantity",
+     *   views={"default", "ItemQuantityEntity", "Delete"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -114,7 +117,8 @@ class ItemQuantityController extends AbstractController
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "ItemQuantity"
+     *   section = "ItemQuantity",
+     *   views={"default", "ItemQuantityEntity", "Create"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -138,7 +142,8 @@ class ItemQuantityController extends AbstractController
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "ItemQuantity"
+     *   section = "ItemQuantity",
+     *   views={"default", "ItemQuantityEntity", "Put"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})

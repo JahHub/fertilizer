@@ -9,6 +9,9 @@ class Week implements EntityInterface
     /** @var int */
     private $id;
 
+    /** @var int */
+    private $number;
+
     /** @var State */
     private $state;
 
@@ -21,6 +24,22 @@ class Week implements EntityInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
     }
 
     /**

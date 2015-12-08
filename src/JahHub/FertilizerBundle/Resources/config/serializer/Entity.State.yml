@@ -13,6 +13,7 @@ JahHub\FertilizerBundle\Entity\State:
       type: string
     weekList:
        expose: true
+       read_only: true
        access_type: public_method
        type: array<integer>
        accessor:

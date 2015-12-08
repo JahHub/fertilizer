@@ -24,7 +24,8 @@ class ScheduleController extends AbstractController
      *   statusCodes = {
      *     200 = "Returned when successful"
      *   },
-     *   section = "Schedule"
+     *   section = "Schedule",
+     *   views={"default", "ScheduleEntity", "List"}
      * )
      *
      * @QueryParam(
@@ -36,9 +37,9 @@ class ScheduleController extends AbstractController
      * )
      * @QueryParam(
      *  name="limit",
-     *  requirements="{5-20}",
+     *  requirements="[5-9]|1[0-9]|20",
      *  default="5",
-     *  description="How many schedules to return."
+     *  description="How many schedules to return [5-20]."
      * )
      *
      * @Route(requirements={"_format"="json|xml"}, path="")
@@ -62,7 +63,8 @@ class ScheduleController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when schedule is not found"
      *   },
-     *   section = "Schedule"
+     *   section = "Schedule",
+     *   views={"default", "ScheduleEntity", "Get"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -87,7 +89,8 @@ class ScheduleController extends AbstractController
      *     200 = "Returned when successful",
      *     404 = "Returned when schedule is not found"
      *   },
-     *   section = "Schedule"
+     *   section = "Schedule",
+     *   views={"default", "ScheduleEntity", "Delete"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -113,7 +116,8 @@ class ScheduleController extends AbstractController
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Schedule"
+     *   section = "Schedule",
+     *   views={"default", "ScheduleEntity", "Create"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
@@ -137,7 +141,8 @@ class ScheduleController extends AbstractController
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
      *   },
-     *   section = "Schedule"
+     *   section = "Schedule",
+     *   views={"default", "ScheduleEntity", "Put"}
      * )
      *
      * @Route(requirements={"_format"="json|xml"})
