@@ -2,7 +2,7 @@ env = "dev"
 paratest_process_count = 1
 
 ###Project tasks
-build: configure install-dep db-reset
+build: configure install-dep db-create
 
 configure:
 	./bin/create-parameters-file

@@ -46,10 +46,10 @@ build:
             - make install-dep env=test
     tests:
         before:
-            - make db-reset env=paratest_0
-            - make db-reset env=paratest_1
-            - make db-reset env=paratest_2
-            - make db-reset env=paratest_3
+            - make db-create env=paratest_0
+            - make db-create env=paratest_1
+            - make db-create env=paratest_2
+            - make db-create env=paratest_3
         override:
             -
                 command: make scrutinizer-coverage paratest_process_count=4
