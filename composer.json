@@ -29,7 +29,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.*",
         "liip/functional-test-bundle":"1.*",
         "matthiasnoback/symfony-dependency-injection-test": "0.*",
-        "matthiasnoback/symfony-config-test": "1.*"
+        "matthiasnoback/symfony-config-test": "1.*",
+        "brianium/paratest": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
