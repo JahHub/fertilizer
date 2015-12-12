@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Tests\RestHandler;
+namespace AppBundle\Tests\Handler;
 
 use AppBundle\Entity\EntityInterface;
 use AppBundle\Handler\EntityHandler;

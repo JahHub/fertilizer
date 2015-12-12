@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Tests\RestHandler;
+namespace AppBundle\Tests\Handler;
 
 /**
  * Class ScheduleHandlerTest
