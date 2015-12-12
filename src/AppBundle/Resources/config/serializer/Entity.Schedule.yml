@@ -1,0 +1,19 @@
+AppBundle\Entity\Schedule:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      access_type: public_method
+      type: integer
+      read_only: true
+    name:
+      expose: true
+      access_type: public_method
+      type: string
+    stateList:
+       expose: true
+       access_type: public_method
+       type: array<integer>
+       accessor:
+           getter: getStateIdList

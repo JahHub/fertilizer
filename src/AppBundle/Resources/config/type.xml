@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="jahhub_fertilizer.form.type.item.class">AppBundle\Form\Type\ItemType</parameter>
+        <parameter key="jahhub_fertilizer.form.type.state.class">AppBundle\Form\Type\StateType</parameter>
+        <parameter key="jahhub_fertilizer.form.type.week.class">AppBundle\Form\Type\WeekType</parameter>
+        <parameter key="jahhub_fertilizer.form.type.item_quantity.class">AppBundle\Form\Type\ItemQuantityType</parameter>
+        <parameter key="jahhub_fertilizer.form.type.schedule.class">AppBundle\Form\Type\ScheduleType</parameter>
+    </parameters>
+
+    <services>
+        <service id="jahhub_fertilizer.form.type.item" class="%jahhub_fertilizer.form.type.item.class%">
+            <tag name="form.type" alias="fertilizer_item" />
+        </service>
+        <service id="jahhub_fertilizer.form.type.state" class="%jahhub_fertilizer.form.type.state.class%">
+            <tag name="form.type" alias="fertilizer_state" />
+        </service>
+        <service id="jahhub_fertilizer.form.type.week" class="%jahhub_fertilizer.form.type.week.class%">
+            <tag name="form.type" alias="fertilizer_week" />
+        </service>
+        <service id="jahhub_fertilizer.form.type.item_quantity" class="%jahhub_fertilizer.form.type.item_quantity.class%">
+            <tag name="form.type" alias="fertilizer_item_quantity" />
+        </service>
+        <service id="jahhub_fertilizer.form.type.schedule" class="%jahhub_fertilizer.form.type.schedule.class%">
+            <tag name="form.type" alias="fertilizer_schedule" />
+        </service>
+    </services>
+</container>
+
