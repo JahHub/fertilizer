@@ -1,0 +1,25 @@
+jahhub_fertilizer_item:
+    type: rest
+    prefix: /items
+    resource: "AppBundle\Controller\ItemController"
+    name_prefix:  api_1_item_ # naming collision
+jahhub_fertilizer_state:
+    type: rest
+    prefix: /states
+    resource: "AppBundle\Controller\StateController"
+    name_prefix:  api_1_state_ # naming collision
+jahhub_fertilizer_week:
+    type: rest
+    prefix: /weeks
+    resource: "AppBundle\Controller\WeekController"
+    name_prefix:  api_1_week_ # naming collision
+jahhub_fertilizer_item_quantity:
+    type: rest
+    prefix: /item_quantities
+    resource: "AppBundle\Controller\ItemQuantityController"
+    name_prefix:  api_1_item_quantity_ # naming collision
+jahhub_fertilizer_schedule:
+    type: rest
+    prefix: /schedules
+    resource: "AppBundle\Controller\ScheduleController"
+    name_prefix:  api_1_schedule_ # naming collision

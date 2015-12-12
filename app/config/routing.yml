@@ -4,4 +4,4 @@ NelmioApiDocBundle:
 jahhub_fertilizer_v1:
     type: rest
     prefix: /api/v1
-    resource: "@JahHubFertilizerBundle/Resources/config/routing.yml"
+    resource: "@AppBundle/Resources/config/routing.yml"

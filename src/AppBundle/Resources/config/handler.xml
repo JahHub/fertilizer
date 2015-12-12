@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="jahhub_fertilizer.handler.item.class">AppBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.state.class">AppBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.week.class">AppBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.item_quantity.class">AppBundle\Handler\EntityHandler</parameter>
+        <parameter key="jahhub_fertilizer.handler.schedule.class">AppBundle\Handler\EntityHandler</parameter>
+    </parameters>
+    <services>
+        <service id="jahhub_fertilizer.handler.item" class="%jahhub_fertilizer.handler.item.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.item"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_item</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.state" class="%jahhub_fertilizer.handler.state.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.state"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_state</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.week" class="%jahhub_fertilizer.handler.week.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.week"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_week</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.item_quantity" class="%jahhub_fertilizer.handler.item_quantity.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.item_quantity"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_item_quantity</argument>
+        </service>
+        <service id="jahhub_fertilizer.handler.schedule" class="%jahhub_fertilizer.handler.schedule.class%">
+            <argument type="service" id="jahhub_fertilizer.manager.schedule"/>
+            <argument type="service" id="form.factory"/>
+            <argument>fertilizer_schedule</argument>
+        </service>
+    </services>
+</container>

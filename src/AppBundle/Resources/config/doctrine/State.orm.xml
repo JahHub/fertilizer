@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="AppBundle\Entity\State"
+            table="state"
+            repository-class="AppBundle\Repository\StateRepository"
+        >
+        <id name="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="name" />
+        <one-to-many target-entity="AppBundle\Entity\Week" field="weekList" mapped-by="state">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>
