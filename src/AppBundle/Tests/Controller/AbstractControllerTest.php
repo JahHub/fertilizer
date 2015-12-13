@@ -1,14 +1,14 @@
 <?php
 namespace AppBundle\Tests\Controller;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use AppBundle\Tests\WebParaTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class AbstractControllerTest
  */
-abstract class AbstractControllerTest extends WebTestCase
+abstract class AbstractControllerTest extends WebParaTestCase
 {
     const UNKNOWN_ID = 999999999999999999;
 
@@ -17,7 +17,10 @@ abstract class AbstractControllerTest extends WebTestCase
 
     protected function setUp()
     {
-        $this->client = static::createClient();
+        parent::setUp();
+        $this->client = static::createClient(array(
+            'environment' => $this->getEnvironment(),
+        ));
         //reset database
         $this->loadFixtures(array());
     }

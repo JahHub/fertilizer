@@ -2,12 +2,12 @@
 namespace AppBundle\Tests\Repository;
 
 use Doctrine\ORM\EntityManager;
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use AppBundle\Tests\WebParaTestCase;
 
 /**
  * Class AbstractRepositoryTest
  */
-abstract class AbstractRepositoryTest extends WebTestCase
+abstract class AbstractRepositoryTest extends WebParaTestCase
 {
 
     const UNKNOWN_ID = 99999999999999999999;
@@ -20,7 +20,9 @@ abstract class AbstractRepositoryTest extends WebTestCase
     public function setUp()
     {
         parent::setUp();
-        self::bootKernel();
+        self::bootKernel(array(
+            'environment' => $this->getEnvironment(),
+        ));
         $this->entityManager = self::$kernel->getContainer()
             ->get('doctrine')
             ->getManager();
