@@ -17,7 +17,7 @@ class WebParaTestCase extends WebTestCase
         $testToken = getenv('TEST_TOKEN');
         $this->environment = $testToken
             ? sprintf(
-                'paratest_%s',
+                'test_%s',
                 $testToken
             )
             : 'test'

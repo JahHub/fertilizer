@@ -3,4 +3,4 @@ imports:
 
 doctrine:
     dbal:
-        dbname:   "%database_name%_paratest_3"
+        dbname:   "%database_name%_test_1"
