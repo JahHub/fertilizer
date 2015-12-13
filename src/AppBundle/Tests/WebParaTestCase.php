@@ -15,10 +15,13 @@ class WebParaTestCase extends WebTestCase
     {
         parent::__construct($name, $data, $dataName);
         $testToken = getenv('TEST_TOKEN');
-        $this->environment = sprintf(
-            'paratest_%s',
-            $testToken ?: '0'
-        );
+        $this->environment = $testToken
+            ? sprintf(
+                'paratest_%s',
+                $testToken
+            )
+            : 'test'
+        ;
     }
 
     /**
