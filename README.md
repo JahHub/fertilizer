@@ -56,7 +56,7 @@ make build env=test
 make coverage-reset
 make phpunit-coverage
 ```
-## Create coverage with paratest (more faster)
+## Create coverage with paratest (faster)
 ```bash
 make build env=test # Will create the 'test' database for first thread
 make db-create env=test_1 # Will create the 'test_1' database for second thread
