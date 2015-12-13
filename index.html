@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Fertilizer by JahHub</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>Fertilizer</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/JahHub/fertilizer">View the Project on GitHub <small>JahHub/fertilizer</small></a></p>
+        <ul>
+          <li><a href="https://github.com/JahHub/fertilizer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/JahHub/fertilizer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/JahHub/fertilizer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="fertilizer" class="anchor" href="#fertilizer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fertilizer</h1>
+
+<p><a href="https://insight.sensiolabs.com/projects/7b4b3585-f33b-4ae6-bab7-30cef98e2e70"><img src="https://insight.sensiolabs.com/projects/7b4b3585-f33b-4ae6-bab7-30cef98e2e70/big.png" alt="SensioLabsInsight"></a></p>
+
+<p><a href="https://travis-ci.org/JahHub/fertilizer"><img src="https://travis-ci.org/JahHub/fertilizer.svg?branch=master" alt="Build Status"></a></p>
+
+<p><a href="https://scrutinizer-ci.com/g/JahHub/fertilizer/?branch=master"><img src="https://scrutinizer-ci.com/g/JahHub/fertilizer/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a><a href="https://scrutinizer-ci.com/g/JahHub/fertilizer/?branch=master"><img src="https://scrutinizer-ci.com/g/JahHub/fertilizer/badges/coverage.png?b=master" alt="Code Coverage"></a><a href="https://scrutinizer-ci.com/g/JahHub/fertilizer/build-status/master"><img src="https://scrutinizer-ci.com/g/JahHub/fertilizer/badges/build.png?b=master" alt="Build Status"></a></p>
+
+<h1>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h1>
+
+<h2>
+<a id="available-make-tasks" class="anchor" href="#available-make-tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available make tasks</h2>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># project</span>
+make build [env<span class="pl-k">=</span>myEnv] <span class="pl-c"># Will do a "make configure", a "make install-dep" and a "make db-create [env=myEnv]"</span>
+make configure <span class="pl-c"># Will create the parameters.yml file from parameters.yml.dist file</span>
+make install-dep <span class="pl-c"># Will download composer or update it to last version and do a "composer install"</span>
+<span class="pl-c"># database</span>
+make db-reset [env<span class="pl-k">=</span>myEnv] <span class="pl-c"># Will do a "make db-drop [env=myEnv]" following by a "make db-create [env=myEnv]"</span>
+make db-drop [env<span class="pl-k">=</span>myEnv] <span class="pl-c"># Will remove the database if exist for 'myEnv' environment</span>
+make db-create [env<span class="pl-k">=</span>myEnv] <span class="pl-c"># Will create the database. Database must not exist else task will be on error for 'myEnv' environment</span>
+
+<span class="pl-c">#Dev/test env</span>
+<span class="pl-c"># Tests</span>
+make <span class="pl-c1">test</span> <span class="pl-c"># Will launch a "make phpcs" and a "make phpunit"</span>
+make phpcs <span class="pl-c"># Will launch phpcs tests</span>
+make phpunit <span class="pl-c"># Will launch phpunit tests</span>
+make paratest [paratest_process_count<span class="pl-k">=</span>N] <span class="pl-c"># Will launch phpunit tests in N thread</span>
+
+<span class="pl-c"># Coverage</span>
+make coverage  [paratest_process_count<span class="pl-k">=</span>N] <span class="pl-c"># Will do a "make reset-coverage" and a "make paratest-coverage  [paratest_process_count=N]"</span>
+make phpunit-coverage <span class="pl-c"># Will launch phpunit tests with html coverage created on 'coverage' directory</span>
+make paratest-coverage [paratest_process_count<span class="pl-k">=</span>N] <span class="pl-c"># Will launch phpunit tests in N thread with html coverage created on 'coverage' directory</span>
+make scrutinizer-coverage [paratest_process_count<span class="pl-k">=</span>N] <span class="pl-c"># Will create coverage for scrutinizer in N threads</span>
+make reset-coverage <span class="pl-c"># Will remove 'coverage' directory</span></pre></div>
+
+<h2>
+<a id="create-environment" class="anchor" href="#create-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create environment</h2>
+
+<div class="highlight highlight-source-shell"><pre>make build [env<span class="pl-k">=</span>dev]</pre></div>
+
+<h2>
+<a id="test-environment" class="anchor" href="#test-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test environment</h2>
+
+<div class="highlight highlight-source-shell"><pre>make build env=<span class="pl-c1">test</span>
+make <span class="pl-c1">test</span></pre></div>
+
+<h2>
+<a id="test-environment-with-paratest-4-threads" class="anchor" href="#test-environment-with-paratest-4-threads" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test environment with paratest (4 threads)</h2>
+
+<div class="highlight highlight-source-shell"><pre>make build env=<span class="pl-c1">test</span> <span class="pl-c"># Will create the 'test' database for first thread</span>
+make db-create env=test_1 <span class="pl-c"># Will create the 'test_1' database for second thread</span>
+make db-create env=test_2 <span class="pl-c"># Will create the 'test_2' database for third thread</span>
+make db-create env=test_3 <span class="pl-c"># Will create the 'test_3' database for last thread</span>
+make phpcs
+make paratest paratest_process_count=4</pre></div>
+
+<h2>
+<a id="create-coverage-with-phpunit" class="anchor" href="#create-coverage-with-phpunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create coverage with phpunit</h2>
+
+<div class="highlight highlight-source-shell"><pre>make build env=<span class="pl-c1">test</span>
+make coverage-reset
+make phpunit-coverage</pre></div>
+
+<h2>
+<a id="create-coverage-with-paratest-more-faster" class="anchor" href="#create-coverage-with-paratest-more-faster" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create coverage with paratest (more faster)</h2>
+
+<div class="highlight highlight-source-shell"><pre>make build env=<span class="pl-c1">test</span> <span class="pl-c"># Will create the 'test' database for first thread</span>
+make db-create env=test_1 <span class="pl-c"># Will create the 'test_1' database for second thread</span>
+make db-create env=test_2 <span class="pl-c"># Will create the 'test_2' database for third thread</span>
+make db-create env=test_3 <span class="pl-c"># Will create the 'test_3' database for last thread</span>
+make coverage paratest_process_count=4</pre></div>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/JahHub">JahHub</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
