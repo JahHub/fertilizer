@@ -1,0 +1,55 @@
+AppBundle\Entity\Item:
+    properties:
+        name:
+            - NotBlank:
+                message: "NOT_BLANK"
+            - NotNull:
+                message: "NOT_NULL"
+            - Length:
+                min: 3
+                max: 100
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"
+AppBundle\Entity\State:
+    properties:
+        name:
+            - NotBlank:
+                message: "NOT_BLANK"
+            - NotNull:
+                message: "NOT_NULL"
+            - Length:
+                min: 3
+                max: 100
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"
+AppBundle\Entity\ItemQuantity:
+    properties:
+        quantity:
+            - NotNull:
+                message: "NOT_NULL"
+        item:
+            - NotNull:
+                message: "NOT_NULL"
+        week:
+            - NotNull:
+                message: "NOT_NULL"
+AppBundle\Entity\Week:
+    properties:
+        number:
+            - NotNull:
+                message: "NOT_NULL"
+        state:
+            - NotNull:
+                message: "NOT_NULL"
+AppBundle\Entity\Schedule:
+    properties:
+        name:
+            - NotBlank:
+                message: "NOT_BLANK"
+            - NotNull:
+                message: "NOT_NULL"
+            - Length:
+                min: 3
+                max: 100
+                minMessage: "AT_LEAST_{{ limit }}"
+                maxMessage: "NOT_MORE_THAN_{{ limit }}"

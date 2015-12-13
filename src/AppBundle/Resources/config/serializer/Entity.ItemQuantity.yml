@@ -1,0 +1,27 @@
+AppBundle\Entity\ItemQuantity:
+  exclusion_policy: ALL
+  access_type: public_method
+  properties:
+    id:
+      expose: true
+      access_type: public_method
+      type: integer
+      read_only: true
+    quantity:
+      expose: true
+      access_type: public_method
+      type: float
+    item:
+      name: item
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getItemId
+    week:
+      name: week
+      expose: true
+      access_type: public_method
+      type: integer
+      accessor:
+        getter: getWeekId

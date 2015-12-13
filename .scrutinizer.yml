@@ -46,10 +46,14 @@ build:
             - make install-dep env=test
     tests:
         before:
-            - make db-reset env=test
+# Create paratest databases
+            - make db-create env=test
+            - make db-create env=test_1
+            - make db-create env=test_2
+            - make db-create env=test_3
         override:
             -
-                command: make scrutinizer-coverage
+                command: make scrutinizer-coverage paratest_process_count=4
                 coverage:
                     file: my-coverage-file
                     format: php-clover

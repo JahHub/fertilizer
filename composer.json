@@ -13,7 +13,6 @@
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "2.*",
         "doctrine/doctrine-bundle": "~1.4",
-        "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
@@ -30,7 +29,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.*",
         "liip/functional-test-bundle":"1.*",
         "matthiasnoback/symfony-dependency-injection-test": "0.*",
-        "matthiasnoback/symfony-config-test": "1.*"
+        "matthiasnoback/symfony-config-test": "1.*",
+        "brianium/paratest": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
