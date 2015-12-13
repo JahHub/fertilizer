@@ -23,7 +23,7 @@ class AppKernel extends Kernel
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))
-            || 'paratest_' === substr($this->getEnvironment(), 0, 9)
+            || 'test_' === substr($this->getEnvironment(), 0, 5)
         ) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();

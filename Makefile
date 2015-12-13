@@ -21,8 +21,10 @@ db-reset: db-drop db-create
 ###Dev env
 
 ##Tests
-test: phpcs paratest
+test: phpcs phpunit
 
+phpunit:
+	./bin/phpunit
 paratest:
 	./bin/paratest -p $(paratest_process_count) --phpunit ./bin/phpunit --colors
 phpcs:
